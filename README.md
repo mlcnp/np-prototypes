@@ -1,2 +1,2 @@
-# np-prototypes
-Hosting scrappy NP prototypes
+# This is a repository of scrappy NP / PSI prototypes from design sprints
+
