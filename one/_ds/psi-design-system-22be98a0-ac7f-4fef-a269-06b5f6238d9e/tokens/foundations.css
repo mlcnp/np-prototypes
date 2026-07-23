@@ -1,0 +1,80 @@
+/* ===========================================================================
+   PSI Design System — Foundations
+   Friendly px-based aliases over the raw Figma variables (which are unitless
+   floats meant for calc()). Components reference these so spacing / radius read
+   as real lengths without per-site calc() wrapping. Colors alias the semantic
+   Figma tokens to short names. Shadows + motion live here too.
+   =========================================================================== */
+
+:root {
+  /* --- Spacing scale (px) --- */
+  --psi-space-0: 0px;
+  --psi-space-4: 4px;
+  --psi-space-8: 8px;
+  --psi-space-12: 12px;
+  --psi-space-16: 16px;
+  --psi-space-20: 20px;
+  --psi-space-24: 24px;
+  --psi-space-32: 32px;
+  --psi-space-40: 40px;
+  --psi-space-48: 48px;
+  --psi-space-80: 80px;
+
+  /* --- Corner radii (px) --- */
+  --psi-radius-4: 4px;     /* tags, chips */
+  --psi-radius-8: 8px;     /* buttons, inputs, banners */
+  --psi-radius-12: 12px;   /* cards */
+  --psi-radius-16: 16px;   /* large cards, modals */
+  --psi-radius-20: 20px;   /* surfaces */
+  --psi-radius-32: 32px;   /* hero surfaces */
+  --psi-radius-pill: 100px;
+
+  /* --- Border --- */
+  --psi-border-width: 1px;
+
+  /* --- Color shortcuts over semantic Figma tokens --- */
+  --psi-text: var(--colors-text-primary);
+  --psi-text-secondary: var(--colors-text-secondary);
+  --psi-text-disabled: var(--colors-text-disabled);
+  --psi-text-hint: var(--colors-text-hint);
+  --psi-text-accent: var(--colors-text-accent);
+  --psi-text-on-dark: var(--colors-text-on-dark-bg);
+
+  --psi-surface: var(--colors-surface-primary);
+  --psi-surface-secondary: var(--colors-surface-secondary);
+  --psi-surface-highlight: var(--colors-surface-highlight);
+  --psi-surface-popover-dark: var(--colors-surface-popover-dark);
+
+  --psi-border: var(--colors-border-primary);
+  --psi-border-selected: var(--colors-border-selected);
+  --psi-border-accent: var(--colors-border-accent);
+
+  --psi-accent: var(--colors-primary-brand-iris);       /* rgb(90,30,245) */
+  --psi-accent-light: var(--colors-primary-brand-lavender);
+  --psi-accent-tint: var(--colors-primary-brand-tanzanite-3);
+
+  --psi-button-primary: var(--colors-button-primary);   /* soft black */
+  --psi-button-accent: var(--colors-button-accent);     /* iris */
+  --psi-button-disabled: var(--colors-button-disabled);
+
+  /* Status / feedback surfaces */
+  --psi-success: var(--colors-utility-mum);             /* green */
+  --psi-warning: var(--colors-utility-kilauea-1);       /* red-orange */
+  --psi-surface-success: var(--colors-surface-banner-success);
+  --psi-surface-warning: var(--colors-surface-banner-warning);
+  --psi-surface-info: var(--colors-surface-banner-info);
+  --psi-surface-suggestion: var(--colors-surface-banner-suggestion);
+
+  /* --- Elevation / shadows --- */
+  --psi-shadow-xs: 0 1px 2px rgba(0,0,0,0.06);
+  --psi-shadow-card: 0 2px 8px rgba(0,0,0,0.08);
+  --psi-shadow-popover: 0 8px 24px rgba(0,0,0,0.12);
+  --psi-shadow-modal: 0 16px 48px rgba(0,0,0,0.18);
+  /* hairline borders are drawn with inset box-shadow in the system */
+  --psi-hairline: inset 0 0 0 1px var(--colors-border-primary);
+
+  /* --- Motion --- */
+  --psi-ease: cubic-bezier(0.2, 0, 0.1, 1); /* @kind other */
+  --psi-duration-fast: 120ms; /* @kind other */
+  --psi-duration: 180ms; /* @kind other */
+}
