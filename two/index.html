@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#F7F7F7;-webkit-font-smoothing:antialiased;}
+  .leaflet-div-icon{background:transparent;border:none;}
+  .leaflet-popup-content-wrapper{border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.14);}
+  .leaflet-popup-content{margin:14px 16px;}
+  .leaflet-container{font-family:'IBM Plex Sans',sans-serif;}
+  input[type=range]{accent-color:#15455F;height:6px;}
+  ::-webkit-scrollbar{width:10px;height:10px;}
+  ::-webkit-scrollbar-thumb{background:#D9D9D9;border-radius:8px;border:2px solid #F7F7F7;}
+  a.psi-link{color:#15455F;text-decoration:none;}
+  a.psi-link:hover{text-decoration:underline;}
+  .hbtn{transition:background .12s ease,color .12s ease;}
+  .softbtn:active{transform:scale(.98);}
+  @keyframes ploc{0%{box-shadow:0 0 0 0 rgba(125,125,255,.5);}70%{box-shadow:0 0 0 14px rgba(125,125,255,0);}100%{box-shadow:0 0 0 0 rgba(125,125,255,0);}}
+</style>
+</helmet>
+<div id="app" style="font-family:'IBM Plex Sans',-apple-system,sans-serif;color:#0F0F0F;min-height:100vh;background:#F7F7F7;">
+
+  <!-- ============ PROTOTYPE HARNESS ============ -->
+  <div id="harness" style="position:sticky;top:0;z-index:1200;display:flex;align-items:center;gap:14px;background:#0F0F0F;color:#fff;padding:9px 18px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.04em;color:#fff;">Local map conversations</span>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#5C7C8C;border:1px solid #3A3A55;border-radius:100px;padding:2px 8px;">Prototype</span>
+    <div style="flex:1;"></div>
+    <div style="display:flex;gap:6px;">
+      <button class="hbtn" data-screen-btn="article" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#fff;background:#2A2A2A;border:none;border-radius:8px;padding:7px 13px;cursor:pointer;">1 · Article</button>
+      <button class="hbtn" data-screen-btn="conversation" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B8B8C0;background:transparent;border:none;border-radius:8px;padding:7px 13px;cursor:pointer;">2 · Conversation</button>
+      <button class="hbtn" data-screen-btn="conversation-add" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B8B8C0;background:transparent;border:none;border-radius:8px;padding:7px 13px;cursor:pointer;">+ Add nodes</button>
+      <button class="hbtn" data-screen-btn="editorial" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B8B8C0;background:transparent;border:none;border-radius:8px;padding:7px 13px;cursor:pointer;">3 · Editorial</button>
+      <button class="hbtn" data-screen-btn="moderation" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#B8B8C0;background:transparent;border:none;border-radius:8px;padding:7px 13px;cursor:pointer;">4 · Moderation</button>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN 1 — ARTICLE ============ -->
+  <div class="screen" data-screen="article" data-screen-label="Article" style="display:block;">
+    <div style="background:#13495F;position:relative;">
+      <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 24px;min-height:62px;">
+        <div style="display:flex;gap:18px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.85);z-index:1;">
+          <span style="cursor:pointer;">About us</span><span style="cursor:pointer;">Get in touch</span><span style="cursor:pointer;">Advertise</span>
+        </div>
+        <a style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-decoration:none;cursor:pointer;"><div style="text-align:center;line-height:.8;color:#fff;font-family:'IBM Plex Sans',sans-serif;"><div style="font-size:9px;font-weight:700;letter-spacing:.34em;padding-left:.34em;">THE</div><div style="font-size:26px;font-weight:700;letter-spacing:.005em;">OAKLANDSIDE</div></div></a>
+        <div style="display:flex;align-items:center;gap:10px;z-index:1;"><button class="softbtn" style="display:inline-flex;align-items:center;gap:6px;background:#E9A93A;color:#fff;font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;border:none;border-radius:4px;padding:9px 15px;cursor:pointer;"><svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 14S2 9.9 2 6.25A2.75 2.75 0 0 1 8 4.3 2.75 2.75 0 0 1 14 6.25C14 9.9 8 14 8 14Z"/></svg>DONATE</button><button class="softbtn" style="background:#E9A93A;color:#fff;font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;border:none;border-radius:4px;padding:9px 15px;cursor:pointer;">NEWSLETTERS</button><span style="display:inline-flex;margin-left:2px;"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="color:#fff;"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+      </div>
+    </div><div style="background:#0E3C50;"><div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:20px;padding:12px 24px;flex-wrap:wrap;font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:13.5px;color:#fff;"><span style="cursor:pointer;white-space:nowrap;">Latest News</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Arts & Community</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Business</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Events</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Food</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Housing</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Immigration</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Nature & Health</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Politics</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Public Safety</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Roads & Transit</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Schools</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Sports</span></div></div>
+
+    <div style="max-width:720px;margin:0 auto;padding:40px 24px 80px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#15455F;margin-bottom:14px;">Transportation</div>
+      <h1 style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:38px;line-height:1.18;margin:0 0 18px;letter-spacing:-0.01em;color:#15455F;">City unveils a plan for protected bike lanes downtown — and wants to know where they should go</h1>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
+        <div style="width:38px;height:38px;border-radius:50%;background:#13495F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;">DO</div>
+        <div style="line-height:1.3;">
+          <div style="font-weight:600;font-size:14px;">By Dana Okereke</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#65676B;">Mar 14, 2025 · 6 min read</div>
+        </div>
+      </div>
+      <div style="width:100%;aspect-ratio:16/9;border-radius:12px;background:linear-gradient(135deg,#E3EDF1,#E4F6F0);display:flex;align-items:center;justify-content:center;border:1px solid #ECECEC;">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#9A9CA0;letter-spacing:.04em;">[ Photo: Telegraph Avenue looking north — The Oaklandside ]</span>
+      </div>
+      <p style="font-size:18px;line-height:1.65;color:#1A1A1A;margin:26px 0 0;">Oakland's public works department released a draft network of protected bike lanes this week, threading roughly four miles of physically separated lanes through downtown and out to West Oakland. City planners say the routes are a starting point — not a final map.</p>
+      <p style="font-size:18px;line-height:1.65;color:#1A1A1A;margin:18px 0 0;">"Where a lane goes matters as much as whether it exists," said transportation director Lena Cho. "The people who ride these streets every day know things our traffic counts don't."</p>
+
+      <!-- ===== EMBEDDED MAP-CONVERSATION TEASER ===== -->
+      <div style="margin:36px 0;border:1px solid #D9D9D9;border-radius:16px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);background:#fff;">
+        <div style="display:flex;flex-wrap:wrap;">
+          <div id="teaser-map" style="width:300px;min-height:212px;flex:0 0 300px;background:#EDEDED;"></div>
+          <div style="flex:1;min-width:240px;padding:22px 24px;display:flex;flex-direction:column;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#15455F;display:flex;align-items:center;gap:6px;margin-bottom:10px;">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg>
+              Map conversation
+            </div>
+            <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px;line-height:1.3;margin:0 0 8px;">Where should the protected bike lanes go?</h3>
+            <p style="font-size:14px;line-height:1.5;color:#65676B;margin:0 0 14px;">Drop your take on the five most-debated spots. Editorial reviews every contribution.</p>
+            <div style="display:flex;align-items:center;gap:14px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#65676B;margin-bottom:18px;">
+              <span>284 participants</span><span style="color:#D9D9D9;">·</span><span>5 locations</span>
+            </div>
+            <button id="teaser-join" class="softbtn" style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:14px;color:#fff;background:#0F0F0F;border:none;border-radius:8px;padding:11px 18px;cursor:pointer;">Join the conversation →</button>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:18px;line-height:1.65;color:#1A1A1A;margin:18px 0 0;">The draft prioritizes the Telegraph Avenue corridor and a contested crossing at 20th, where right-turning buses and the weekend Uptown crowd regularly mix with cyclists. A western spur would, for the first time, connect West Oakland to the downtown grid.</p>
+      <p style="font-size:18px;line-height:1.65;color:#1A1A1A;margin:18px 0 0;">Public works will hold three open houses in April before bringing a revised map to the city council in May.</p>
+
+      <div style="margin-top:32px;display:flex;align-items:center;gap:12px;background:#FEF7F2;border-radius:12px;padding:14px 18px;">
+        <div style="width:26px;height:26px;border-radius:50%;background:#fff;border:1px solid #F0E6DE;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:13px;color:#15455F;">?</div>
+        <span style="font-size:14px;color:#5A4636;flex:1;">The Oaklandside spaces are moderated and built for good-faith conversation. <a class="psi-link" href="#" onclick="return false;">Learn how</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN 3 — CONVERSATION ============ -->
+  <div class="screen" data-screen="conversation" data-screen-label="Conversation" style="display:none;background:#fff;">
+    <!-- oak masthead -->
+    <div style="background:#13495F;position:relative;">
+      <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 24px;min-height:62px;">
+        <div style="display:flex;gap:18px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.85);z-index:1;">
+          <span style="cursor:pointer;">About us</span><span style="cursor:pointer;">Get in touch</span><span style="cursor:pointer;">Advertise</span>
+        </div>
+        <a style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-decoration:none;cursor:pointer;"><div style="text-align:center;line-height:.8;color:#fff;font-family:'IBM Plex Sans',sans-serif;"><div style="font-size:9px;font-weight:700;letter-spacing:.34em;padding-left:.34em;">THE</div><div style="font-size:26px;font-weight:700;letter-spacing:.005em;">OAKLANDSIDE</div></div></a>
+        <div style="display:flex;align-items:center;gap:10px;z-index:1;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">B</div><span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#fff;">brendan</span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:rgba(255,255,255,.8);"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
+      </div>
+    </div><div style="background:#0E3C50;"><div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:20px;padding:12px 24px;flex-wrap:wrap;font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:13.5px;color:#fff;"><span style="cursor:pointer;white-space:nowrap;">Latest News</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Arts & Community</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Business</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Events</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Food</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Housing</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Immigration</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Nature & Health</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Politics</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Public Safety</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Roads & Transit</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Schools</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Sports</span></div></div>
+
+    <!-- jasper question banner -->
+    <div style="background:#FEF7F2;">
+      <div style="max-width:1180px;margin:0 auto;padding:38px 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:280px;">
+          <div style="display:flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#9A8C7E;margin-bottom:10px;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg><span>Map conversation · Downtown Oakland</span></div>
+          <h1 style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:32px;line-height:1.2;margin:0;max-width:680px;letter-spacing:-0.01em;color:#15455F;">Where should Oakland's protected bike lanes go?</h1>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto;padding-top:4px;">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><circle cx="8" cy="5" r="2.6" stroke="currentColor" stroke-width="1.3"/><path d="M3 13.5c0-2.5 2.2-4 5-4s5 1.5 5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#65676B;white-space:nowrap;">284 participants</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- body -->
+    <div style="max-width:1180px;margin:0 auto;padding:28px 24px 80px;">
+      <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;">
+        <!-- LEFT: map + legend -->
+        <div style="flex:1;min-width:340px;position:sticky;top:78px;max-height:calc(100vh - 94px);">
+          <div style="display:flex;flex-direction:column;max-height:calc(100vh - 94px);background:#fff;border:1px solid #ECECEC;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);">
+            <div id="conv-map" style="width:100%;flex:1 1 auto;min-height:240px;background:#EDEDED;"></div>
+            <div style="flex:0 0 auto;padding:14px 16px;border-top:1px solid #ECECEC;max-height:42vh;overflow-y:auto;">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+                <span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;">The five contested spots</span>
+                <button id="conv-showall" class="softbtn" style="display:none;font-family:'IBM Plex Sans',sans-serif;font-weight:500;font-size:13px;color:#15455F;background:transparent;border:none;cursor:pointer;">Show all</button>
+              </div>
+              <div id="conv-legend" style="display:flex;flex-direction:column;gap:2px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: thread -->
+        <div style="flex:1.05;min-width:360px;display:flex;flex-direction:column;gap:18px;">
+          <!-- filter banner -->
+          <div id="conv-filter" style="display:none;align-items:center;gap:10px;background:#E3EDF1;border-radius:10px;padding:10px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0E3C50;">
+            <span id="conv-filter-text">Showing responses near a location</span>
+            <button id="conv-filter-clear" class="softbtn" style="margin-left:auto;font-family:'IBM Plex Sans',sans-serif;font-weight:500;font-size:13px;color:#0E3C50;background:#fff;border:none;border-radius:7px;padding:5px 11px;cursor:pointer;">Clear</button>
+          </div>
+
+          <!-- response composer -->
+          <div style="background:#fff;border:1px solid #E1E1E4;border-radius:14px;padding:14px 16px;">
+            <textarea id="composer-text" rows="2" placeholder="Add your response — what would you change, and where?" style="width:100%;border:none;outline:none;resize:none;font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.5;color:#0F0F0F;background:transparent;"></textarea>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap;">
+              <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#65676B;">Pin to</span>
+              <select id="composer-loc" style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;border:1px solid #D9D9D9;border-radius:8px;padding:6px 10px;background:#fff;cursor:pointer;"></select>
+              <button id="composer-post" class="softbtn" style="margin-left:auto;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#fff;background:#0F0F0F;border:none;border-radius:100px;padding:9px 20px;cursor:pointer;">Post</button>
+            </div>
+          </div>
+
+          <!-- sort -->
+          <div style="display:flex;align-items:center;gap:10px;border-bottom:1px solid #ECECEC;padding-bottom:14px;">
+            <span style="flex:1;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:18px;color:#0F0F0F;">102 responses</span>
+            <button class="softbtn" style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;color:#0F0F0F;background:none;border:none;cursor:pointer;">Newest <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          </div>
+
+          <div id="conv-responses" style="display:flex;flex-direction:column;"></div>
+
+          <button class="softbtn" style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#fff;background:#0F0F0F;border:none;border-radius:100px;padding:10px 20px;cursor:pointer;margin-top:8px;">Show more responses <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6"/></svg></button>
+        </div>
+      </div>
+
+      <!-- nearby (teal) -->
+      <div style="margin-top:48px;">
+        <h3 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:18px;margin:0 0 16px;">Nearby conversations</h3>
+        <div id="conv-nearby" style="display:flex;gap:16px;flex-wrap:wrap;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN 2b — CONVERSATION · ADD NODES (variant) ============ -->
+  <div class="screen" data-screen="conversation-add" data-screen-label="Conversation · Add nodes" style="display:none;background:#fff;">
+    <!-- oak masthead -->
+    <div style="background:#13495F;position:relative;">
+      <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 24px;min-height:62px;">
+        <div style="display:flex;gap:18px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.85);z-index:1;">
+          <span style="cursor:pointer;">About us</span><span style="cursor:pointer;">Get in touch</span><span style="cursor:pointer;">Advertise</span>
+        </div>
+        <a style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-decoration:none;cursor:pointer;"><div style="text-align:center;line-height:.8;color:#fff;font-family:'IBM Plex Sans',sans-serif;"><div style="font-size:9px;font-weight:700;letter-spacing:.34em;padding-left:.34em;">THE</div><div style="font-size:26px;font-weight:700;letter-spacing:.005em;">OAKLANDSIDE</div></div></a>
+        <div style="display:flex;align-items:center;gap:10px;z-index:1;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">B</div><span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#fff;">brendan</span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:rgba(255,255,255,.8);"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
+      </div>
+    </div><div style="background:#0E3C50;"><div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:20px;padding:12px 24px;flex-wrap:wrap;font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:13.5px;color:#fff;"><span style="cursor:pointer;white-space:nowrap;">Latest News</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Arts & Community</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Business</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Events</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Food</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Housing</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Immigration</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Nature & Health</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Politics</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Public Safety</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Roads & Transit</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Schools</span><span style="cursor:pointer;white-space:nowrap;opacity:.92;">Sports</span></div></div>
+
+    <!-- jasper question banner -->
+    <div style="background:#FEF7F2;">
+      <div style="max-width:1180px;margin:0 auto;padding:38px 24px;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:280px;">
+          <div style="display:flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#9A8C7E;margin-bottom:10px;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg><span>Map conversation · Downtown Oakland</span></div>
+          <h1 style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:32px;line-height:1.2;margin:0;max-width:680px;letter-spacing:-0.01em;color:#15455F;">Where should Oakland's protected bike lanes go?</h1>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.5;color:#65676B;margin:10px 0 0;max-width:560px;">Know a spot we missed? Add it to the map. Suggestions are reviewed by the team before they go public.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex:0 0 auto;padding-top:4px;">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><circle cx="8" cy="5" r="2.6" stroke="currentColor" stroke-width="1.3"/><path d="M3 13.5c0-2.5 2.2-4 5-4s5 1.5 5 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#65676B;white-space:nowrap;">284 participants</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- body -->
+    <div style="max-width:1180px;margin:0 auto;padding:28px 24px 80px;">
+      <div style="display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;">
+        <!-- LEFT: map + add controls + legend -->
+        <div style="flex:1;min-width:340px;position:sticky;top:78px;max-height:calc(100vh - 94px);">
+          <div style="display:flex;flex-direction:column;max-height:calc(100vh - 94px);background:#fff;border:1px solid #ECECEC;border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.05);">
+            <!-- map toolbar -->
+            <div style="flex:0 0 auto;display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #ECECEC;">
+              <span id="ca-hint" style="flex:1;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#65676B;">5 official locations · tap a pin to filter responses</span>
+              <button id="ca-add-toggle" class="softbtn" style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:13px;color:#fff;background:#15455F;border:none;border-radius:100px;padding:8px 14px;cursor:pointer;white-space:nowrap;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Add a location</button>
+            </div>
+            <div style="position:relative;flex:1 1 auto;min-height:240px;">
+              <div id="ca-map" style="position:absolute;inset:0;background:#EDEDED;"></div>
+              <!-- node form popover -->
+              <div id="ca-form" style="display:none;position:absolute;left:14px;right:14px;bottom:14px;background:#fff;border:1px solid #E1E1E4;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.16);padding:14px;z-index:600;">
+                <div style="display:flex;align-items:center;gap:7px;margin-bottom:10px;">
+                  <span style="display:inline-flex;width:22px;height:22px;border-radius:50%;background:#E3EDF1;color:#15455F;align-items:center;justify-content:center;"><svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg></span>
+                  <span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#1A1A1A;">New location</span>
+                  <span id="ca-form-coords" style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9A9CA0;"></span>
+                </div>
+                <input id="ca-form-title" type="text" placeholder="Name this spot (e.g. Lawrence Ave school zone)" style="width:100%;border:1px solid #D9D9D9;border-radius:8px;padding:9px 11px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;outline:none;margin-bottom:8px;">
+                <textarea id="ca-form-desc" rows="2" placeholder="Why does this spot matter? What would you change here?" style="width:100%;border:1px solid #D9D9D9;border-radius:8px;padding:9px 11px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.5;color:#0F0F0F;outline:none;resize:none;margin-bottom:10px;"></textarea>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#9A8C7E;flex:1;">Reviewed before it's public</span>
+                  <button id="ca-form-cancel" class="softbtn" style="font-family:'IBM Plex Sans',sans-serif;font-weight:500;font-size:13px;color:#0F0F0F;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:8px 15px;cursor:pointer;">Cancel</button>
+                  <button id="ca-form-submit" class="softbtn" style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:13px;color:#fff;background:#0F0F0F;border:none;border-radius:100px;padding:8px 17px;cursor:pointer;">Submit for review</button>
+                </div>
+              </div>
+            </div>
+            <div style="flex:0 0 auto;padding:14px 16px;border-top:1px solid #ECECEC;max-height:42vh;overflow-y:auto;">
+              <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-bottom:8px;">The five contested spots</div>
+              <div id="ca-legend" style="display:flex;flex-direction:column;gap:2px;"></div>
+              <div id="ca-mine-wrap" style="display:none;margin-top:14px;">
+                <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#15455F;margin-bottom:6px;display:flex;align-items:center;gap:6px;">Your suggestions <span id="ca-mine-count" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;background:#15455F;border-radius:100px;padding:0 7px;">0</span></div>
+                <div id="ca-mine" style="display:flex;flex-direction:column;gap:6px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: thread -->
+        <div style="flex:1.05;min-width:360px;display:flex;flex-direction:column;gap:18px;">
+          <div style="display:flex;align-items:center;gap:10px;border-bottom:1px solid #ECECEC;padding-bottom:14px;">
+            <span style="flex:1;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:18px;color:#0F0F0F;">102 responses</span>
+            <button class="softbtn" style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;color:#0F0F0F;background:none;border:none;cursor:pointer;">Newest <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          </div>
+          <div id="ca-responses" style="display:flex;flex-direction:column;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN 4 — EDITORIAL (New space) ============ -->
+  <div class="screen" data-screen="editorial" data-screen-label="Editorial · New space" style="display:none;background:#fff;min-height:100vh;display:none;flex-direction:column;">
+    <div style="background:#13495F;position:relative;">
+      <div style="max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 24px;min-height:62px;">
+        <div style="display:flex;gap:18px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.85);z-index:1;">
+          <span style="cursor:pointer;">About us</span><span style="cursor:pointer;">Get in touch</span><span style="cursor:pointer;">Advertise</span>
+        </div>
+        <a style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-decoration:none;cursor:pointer;"><div style="text-align:center;line-height:.8;color:#fff;font-family:'IBM Plex Sans',sans-serif;"><div style="font-size:9px;font-weight:700;letter-spacing:.34em;padding-left:.34em;">THE</div><div style="font-size:26px;font-weight:700;letter-spacing:.005em;">OAKLANDSIDE</div></div></a>
+        <div style="display:flex;align-items:center;gap:10px;z-index:1;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.4);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">AA</div><span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#fff;">Alice Admin</span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:rgba(255,255,255,.8);"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
+      </div>
+    </div>
+
+    <div style="flex:1;max-width:860px;width:100%;margin:0 auto;padding:36px 24px 64px;">
+      <h1 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:34px;margin:0 0 32px;letter-spacing:-0.01em;">New space</h1>
+
+      <!-- Prompt -->
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;">
+        <span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;">Prompt (required)</span>
+        <span id="ns-count" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#9A9CA0;">0/85 characters</span>
+      </div>
+      <input id="ns-prompt" type="text" maxlength="85" placeholder="Write a question or discussion prompt…" style="width:100%;border:1px solid #D9D9D9;border-radius:10px;padding:15px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;color:#0F0F0F;outline:none;margin-bottom:30px;">
+
+      <!-- Prosocial format -->
+      <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-bottom:16px;">Prosocial format (required)</div>
+      <div id="ns-formats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px 22px;margin-bottom:8px;">
+
+        <!-- Comment Slider -->
+        <div class="ns-fmt" data-fmt="slider" style="cursor:pointer;">
+          <div class="ns-thumb" style="background:#FBF1EA;border:1.5px solid #EFE2D8;border-radius:12px;height:186px;padding:16px;">
+            <div style="background:#fff;border-radius:8px;height:100%;padding:14px;display:flex;flex-direction:column;gap:9px;">
+              <div style="height:6px;width:66%;border-radius:3px;background:#ECECEC;"></div>
+              <div style="height:6px;width:88%;border-radius:3px;background:#ECECEC;"></div>
+              <div style="margin-top:12px;height:8px;border-radius:5px;background:linear-gradient(90deg,#E8553A,#E8A13A,#3FA06B);position:relative;">
+                <div style="position:absolute;left:48%;top:50%;transform:translate(-50%,-50%);width:17px;height:17px;border-radius:50%;background:#fff;border:1.5px solid #C9CCD1;box-shadow:0 1px 2px rgba(0,0,0,.25);"></div>
+              </div>
+              <div style="margin-top:auto;height:36px;border:1px solid #ECECEC;border-radius:6px;"></div>
+            </div>
+          </div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-top:11px;">Comment Slider</div>
+        </div>
+
+        <!-- Representing Perspectives -->
+        <div class="ns-fmt" data-fmt="perspectives" style="cursor:pointer;">
+          <div class="ns-thumb" style="background:#FBF1EA;border:1.5px solid #EFE2D8;border-radius:12px;height:186px;padding:16px;">
+            <div style="background:#fff;border-radius:8px;height:100%;padding:14px;display:flex;flex-direction:column;gap:11px;">
+              <div style="height:6px;width:78%;border-radius:3px;background:#ECECEC;"></div>
+              <div style="display:flex;align-items:center;gap:7px;"><div style="width:16px;height:16px;border-radius:4px;background:#E8553A;"></div><div style="flex:1;height:6px;border-radius:3px;background:#ECECEC;"></div><div style="width:26px;height:13px;border-radius:7px;background:#F1F1F2;"></div></div>
+              <div style="display:flex;align-items:center;gap:7px;"><div style="width:16px;height:16px;border-radius:4px;background:#7C3AED;"></div><div style="flex:1;height:6px;border-radius:3px;background:#ECECEC;"></div><div style="width:26px;height:13px;border-radius:7px;background:#F1F1F2;"></div></div>
+              <div style="display:flex;align-items:center;gap:7px;"><div style="width:16px;height:16px;border-radius:4px;background:#13495F;"></div><div style="flex:1;height:6px;border-radius:3px;background:#ECECEC;"></div><div style="width:26px;height:13px;border-radius:7px;background:#F1F1F2;"></div></div>
+              <div style="margin-top:auto;display:flex;align-items:center;gap:7px;"><div style="width:18px;height:18px;border-radius:50%;background:#E8A13A;"></div><div style="flex:1;height:6px;border-radius:3px;background:#ECECEC;"></div></div>
+            </div>
+          </div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-top:11px;">Representing Perspectives</div>
+        </div>
+
+        <!-- Dialogue -->
+        <div class="ns-fmt" data-fmt="dialogue" style="cursor:pointer;">
+          <div class="ns-thumb" style="background:#FBF1EA;border:1.5px solid #EFE2D8;border-radius:12px;height:186px;padding:16px;">
+            <div style="background:#fff;border-radius:8px;height:100%;padding:14px;display:flex;flex-direction:column;gap:11px;">
+              <div style="height:6px;width:72%;border-radius:3px;background:#ECECEC;"></div>
+              <div style="display:flex;gap:7px;"><span style="background:#E8553A;color:#fff;font:600 10px 'IBM Plex Mono',monospace;padding:4px 12px;border-radius:100px;">Yes</span><span style="background:#13495F;color:#fff;font:600 10px 'IBM Plex Mono',monospace;padding:4px 12px;border-radius:100px;">No</span></div>
+              <div style="margin-top:2px;border:1px solid #ECECEC;border-radius:8px;padding:9px;">
+                <span style="display:inline-block;border:1px solid #D9D9D9;font:600 9px 'IBM Plex Mono',monospace;padding:1px 7px;border-radius:4px;color:#65676B;">No</span>
+                <div style="display:flex;align-items:center;gap:7px;margin-top:8px;"><div style="width:17px;height:17px;border-radius:50%;background:#B45309;"></div><span style="font:600 11px 'IBM Plex Sans',sans-serif;">anon123</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-top:11px;">Dialogue</div>
+        </div>
+
+        <!-- Audience Input -->
+        <div class="ns-fmt" data-fmt="audience" style="cursor:pointer;">
+          <div class="ns-thumb" style="background:#FBF1EA;border:1.5px solid #EFE2D8;border-radius:12px;height:186px;padding:16px;">
+            <div style="background:#fff;border-radius:8px;height:100%;padding:14px;display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;align-items:center;gap:7px;"><div style="width:18px;height:18px;border-radius:50%;background:#E8A13A;"></div><span style="font:600 11px 'IBM Plex Sans',sans-serif;">Tout un matin</span></div>
+              <div style="height:6px;width:92%;border-radius:3px;background:#ECECEC;"></div>
+              <div style="height:6px;width:74%;border-radius:3px;background:#ECECEC;"></div>
+              <div style="margin-top:6px;display:flex;align-items:center;gap:7px;"><div style="width:18px;height:18px;border-radius:50%;background:#7C3AED;"></div><span style="font:600 11px 'IBM Plex Sans',sans-serif;flex:1;">janedoe</span><svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M10.5 2.5l3 3-5 1.5-2 4-1.5-1.5-3 .5.5-3L4.5 6.5l4-2 2-2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+              <div style="height:6px;width:86%;border-radius:3px;background:#ECECEC;"></div>
+            </div>
+          </div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-top:11px;">Audience Input</div>
+        </div>
+
+        <!-- Map (new) -->
+        <div class="ns-fmt" data-fmt="map" style="cursor:pointer;">
+          <div class="ns-thumb" style="background:#FBF1EA;border:1.5px solid #EFE2D8;border-radius:12px;height:186px;padding:16px;">
+            <div style="background:#fff;border-radius:8px;height:100%;position:relative;overflow:hidden;">
+              <div style="position:absolute;inset:0;background:#E7EDEF;background-image:linear-gradient(#D6DEE2 1px,transparent 1px),linear-gradient(90deg,#D6DEE2 1px,transparent 1px);background-size:26px 26px;"></div>
+              <div style="position:absolute;left:18%;top:34%;width:34%;height:5px;background:#CBD5DA;border-radius:3px;transform:rotate(18deg);"></div>
+              <div style="position:absolute;left:42%;top:60%;width:46%;height:5px;background:#CBD5DA;border-radius:3px;transform:rotate(-12deg);"></div>
+              <div style="position:absolute;left:30%;top:30%;transform:translate(-50%,-100%);"><div style="width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#15455F;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);"></div></div>
+              <div style="position:absolute;left:58%;top:48%;transform:translate(-50%,-100%);"><div style="width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#15455F;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);"></div></div>
+              <div style="position:absolute;left:74%;top:72%;transform:translate(-50%,-100%);"><div style="width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#13495F;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.3);"></div></div>
+            </div>
+          </div>
+          <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-top:11px;display:flex;align-items:center;gap:7px;">Map <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#15455F;background:#E3EDF1;border-radius:4px;padding:1px 6px;">New</span></div>
+        </div>
+
+      </div>
+
+      <!-- conditional: framing question (Map only) -->
+      <div id="ns-framing" style="display:none;margin-top:30px;">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-bottom:9px;">Framing question</div>
+        <input id="ns-framing-input" type="text" value="Should the city build these lanes — and where?" style="width:100%;border:1px solid #D9D9D9;border-radius:10px;padding:14px 16px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;color:#0F0F0F;outline:none;">
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#9A9CA0;margin:8px 2px 0;">Shown at the top of the map space to frame how readers respond at each location.</p>
+      </div>
+
+      <!-- conditional: map location widget (Map only) -->
+      <div id="ns-map-widget" style="display:none;margin-top:30px;">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-bottom:9px;">Map locations</div>
+        <div style="background:#fff;border:1px solid #ECECEC;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+          <!-- search -->
+          <div style="position:relative;border-bottom:1px solid #ECECEC;">
+            <div style="display:flex;align-items:center;gap:9px;padding:11px 15px;">
+              <svg width="17" height="17" viewBox="0 0 16 16" fill="none" style="color:#65676B;flex:0 0 17px;"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 10.5l3 3" stroke="currentColor" stroke-width="1.4"/></svg>
+              <input id="ed-search" type="text" placeholder="Search a street, neighborhood, or landmark to focus the map…" style="flex:1;border:none;outline:none;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;background:transparent;">
+            </div>
+            <div id="ed-search-results" style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid #ECECEC;border-top:none;border-radius:0 0 10px 10px;box-shadow:0 8px 24px rgba(0,0,0,.12);z-index:600;max-height:230px;overflow-y:auto;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 15px;background:#FBFBFB;border-bottom:1px solid #ECECEC;">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="color:#15455F;"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#65676B;">Click the map to drop a location, or drag a pin to move it.</span>
+          </div>
+          <div id="ed-map" style="width:100%;height:340px;background:#EDEDED;"></div>
+          <div style="padding:14px 16px;">
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;margin-bottom:10px;">Locations on the map (<span id="ed-loc-count">2</span>)</div>
+            <div id="ed-loc-list" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- conditional: audience participation (Map only) -->
+      <div id="ns-participation" style="display:none;margin-top:30px;">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;margin-bottom:16px;">Audience participation</div>
+        <div id="ed-mode-participatory" class="ed-mode softbtn" data-mode="participatory" style="display:flex;gap:12px;align-items:flex-start;border:1.5px solid #0F0F0F;border-radius:10px;padding:15px;cursor:pointer;margin-bottom:10px;">
+          <div class="ed-radio" style="width:18px;height:18px;border-radius:50%;border:5px solid #0F0F0F;flex:0 0 18px;margin-top:2px;"></div>
+          <div><div style="font-weight:600;font-size:15px;">Audience can shape the map</div><div style="font-size:14px;color:#65676B;line-height:1.45;margin-top:2px;">Readers respond, suggest new locations, and mark regions. Additions come to you for review.</div></div>
+        </div>
+        <div id="ed-mode-readonly" class="ed-mode softbtn" data-mode="readonly" style="display:flex;gap:12px;align-items:flex-start;border:1.5px solid #ECECEC;border-radius:10px;padding:15px;cursor:pointer;">
+          <div class="ed-radio" style="width:18px;height:18px;border-radius:50%;border:1.5px solid #D9D9D9;flex:0 0 18px;margin-top:2px;"></div>
+          <div><div style="font-weight:600;font-size:15px;">Read-only map</div><div style="font-size:14px;color:#65676B;line-height:1.45;margin-top:2px;">Readers respond to the locations you set, but can't add their own pins.</div></div>
+        </div>
+        <div id="ed-approval-row" style="display:flex;align-items:center;gap:12px;margin-top:14px;padding:14px 2px 0;border-top:1px solid #ECECEC;">
+          <div style="flex:1;"><div style="font-weight:600;font-size:15px;">Require approval for audience additions</div><div style="font-size:14px;color:#65676B;">Pins suggested by readers stay hidden until you approve them.</div></div>
+          <div id="ed-toggle" class="softbtn" style="width:44px;height:26px;border-radius:100px;background:#0F0F0F;position:relative;cursor:pointer;flex:0 0 44px;"><div id="ed-toggle-knob" style="position:absolute;top:3px;left:21px;width:20px;height:20px;border-radius:50%;background:#fff;transition:left .15s ease;"></div></div>
+        </div>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:10px;background:#FEF7F2;border-radius:10px;padding:12px 14px;">
+          <svg width="17" height="17" viewBox="0 0 16 16" fill="none" style="color:#9A8C7E;flex:0 0 17px;"><path d="M8 1.3l1.9 3.9 4.3.6-3.1 3 .7 4.3L8 14.7 4.3 13.1l.7-4.3-3.1-3 4.3-.6z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          <span style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.4;color:#5A4636;flex:1;">Reader-suggested locations stay hidden until staff approve them — the review queue lives in the <button id="ed-go-mod" style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#15455F;background:none;border:none;padding:0;cursor:pointer;text-decoration:underline;">Moderation dashboard</button>.</span>
+        </div>
+      </div>
+
+      <!-- actions -->
+      <div style="display:flex;justify-content:flex-end;align-items:center;gap:14px;margin-top:40px;">
+        <button id="ns-cancel" class="softbtn" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#0F0F0F;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:11px 24px;cursor:pointer;">Cancel</button>
+        <button id="ed-publish" class="softbtn" data-ready="" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#9A9CA0;background:#ECECEC;border:none;border-radius:100px;padding:11px 26px;cursor:not-allowed;">Create space</button>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div style="border-top:1px solid #ECECEC;text-align:center;padding:13px;">
+      <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#C0392B;">Running in emulator mode. Do not use with production credentials.</span>
+    </div>
+  </div>
+
+  <!-- ============ SCREEN 5 — MODERATION DASHBOARD ============ -->
+  <div class="screen" data-screen="moderation" data-screen-label="Moderation" style="display:none;background:#F4F4F5;">
+    <div style="display:flex;min-height:calc(100vh - 42px);">
+      <!-- sidebar -->
+      <div style="width:248px;flex:0 0 248px;background:#fff;border-right:1px solid #ECECEC;padding:22px 14px;">
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:17px;padding:0 10px 22px;">PSI Moderation</div>
+        <div style="display:flex;flex-direction:column;gap:3px;">
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;background:#F1F1F2;cursor:pointer;">
+            <svg width="19" height="19" viewBox="0 0 20 20" fill="none" style="color:#0F0F0F;"><rect x="2.5" y="2.5" width="15" height="15" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M10 6.5v7M6.5 10h7" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;color:#0F0F0F;">Moderate spaces</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;cursor:pointer;">
+            <svg width="19" height="19" viewBox="0 0 20 20" fill="none" style="color:#65676B;"><path d="M3 4.5h14v8H7l-4 3.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <span style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#65676B;">Moderate posts</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;cursor:pointer;">
+            <svg width="19" height="19" viewBox="0 0 20 20" fill="none" style="color:#65676B;"><path d="M5 4h10M5 8h10M5 12h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="14" cy="14" r="3.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            <span style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#65676B;">Blocklist</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;cursor:pointer;">
+            <svg width="19" height="19" viewBox="0 0 20 20" fill="none" style="color:#65676B;"><path d="M3 15l4.5-5 3 3L16 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 6h-3M16 6v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#65676B;">AI evaluation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- main -->
+      <div style="flex:1;display:flex;flex-direction:column;min-width:0;">
+        <!-- topbar -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:#fff;border-bottom:1px solid #ECECEC;">
+          <div style="display:flex;align-items:center;gap:9px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;">
+            <span style="color:#65676B;">Moderate spaces</span>
+            <span style="color:#C7C7CC;">›</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="color:#15455F;"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg>
+            <span style="font-weight:600;color:#0F0F0F;">OAK-MAP-1</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:9px;">
+            <div style="width:30px;height:30px;border-radius:50%;background:#7C3AED;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">AE</div>
+            <span style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;">Amelia Eqbal</span>
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+        </div>
+
+        <!-- content -->
+        <div style="padding:26px 28px 60px;display:flex;flex-direction:column;gap:20px;max-width:1000px;width:100%;">
+
+          <!-- summary card -->
+          <div style="background:#fff;border:1px solid #ECECEC;border-radius:16px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.05);">
+            <h2 style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:24px;margin:0 0 7px;letter-spacing:-0.01em;">Where should the protected bike lanes go?</h2>
+            <div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#65676B;margin-bottom:16px;">Mar 14, 2025 | 9:00am · Created by Alice Admin</div>
+            <div style="display:flex;flex-wrap:wrap;gap:24px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;padding-bottom:18px;border-bottom:1px solid #ECECEC;">
+              <span><span style="color:#65676B;">Map nodes:</span> <b>17</b></span>
+              <span><span style="color:#65676B;">ID:</span> <b>OAK-MAP-1</b></span>
+              <span><span style="color:#65676B;">Linked story:</span> <a class="psi-link" href="#" onclick="return false;" style="color:#15455F;">1 story</a></span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;">
+              <button class="mod-chip" data-chip="await" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;background:#FEF7F2;border:1.5px solid #0F0F0F;border-radius:100px;padding:7px 14px;cursor:pointer;">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.4"/><path d="M10.5 10.5l3 3" stroke="currentColor" stroke-width="1.4"/></svg>
+                Awaiting decision <b id="mod-c-await">4</b>
+              </button>
+              <button class="mod-chip" data-chip="auto" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:7px 14px;cursor:pointer;">
+                <span style="width:16px;height:16px;border-radius:4px;background:#00AF87;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;">✓</span>
+                Automatically approved <b id="mod-c-auto">12</b>
+              </button>
+              <button class="mod-chip" data-chip="mapp" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:7px 14px;cursor:pointer;">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Manually approved <b id="mod-c-mapp">3</b>
+              </button>
+              <button class="mod-chip" data-chip="mrej" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:7px 14px;cursor:pointer;">
+                <span style="width:16px;height:16px;border-radius:50%;background:#F53C19;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;">⊘</span>
+                Manually rejected <b id="mod-c-mrej">1</b>
+              </button>
+              <button class="mod-chip" data-chip="book" style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:7px 14px;cursor:pointer;">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M4 2.5h8v11l-4-2.5-4 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+                My bookmarks <b id="mod-c-book">2</b>
+              </button>
+            </div>
+          </div>
+
+          <!-- list card -->
+          <div style="background:#fff;border:1px solid #ECECEC;border-radius:16px;padding:20px 22px 24px;box-shadow:0 2px 8px rgba(0,0,0,.05);">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+              <button class="softbtn" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:16px;font-weight:600;color:#0F0F0F;background:none;border:none;cursor:pointer;">Most recent <svg width="13" height="13" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+              <button class="softbtn" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:6px 13px;cursor:pointer;"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="color:#65676B;"><path d="M2 3.5h12l-4.5 5v4l-3 1.5v-5.5z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>Filters <b style="background:#0F0F0F;color:#fff;border-radius:100px;font-size:11px;padding:0 6px;">1</b></button>
+            </div>
+            <div id="mod-list" style="display:flex;flex-direction:column;gap:12px;"></div>
+            <div id="mod-empty" style="display:none;flex-direction:column;align-items:center;text-align:center;padding:42px 20px;color:#65676B;">
+              <div style="width:46px;height:46px;border-radius:50%;background:#E4F6F0;color:#00AF87;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px;">✓</div>
+              <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:16px;color:#0F0F0F;margin-bottom:4px;">All caught up</div>
+              <div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;">No map nodes are waiting for review.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- toast -->
+    <div id="mod-toast" style="position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(8px);background:#0F0F0F;color:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:14px;padding:11px 18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.25);opacity:0;transition:opacity .2s ease,transform .2s ease;z-index:2000;pointer-events:none;"></div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:900},&quot;basemap&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Light&quot;,&quot;Streets&quot;,&quot;Muted&quot;],&quot;default&quot;:&quot;Light&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showHarness&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return {}; }
+
+  componentDidMount() {
+    this.LOCS = [
+      { n:1, title:'Telegraph & 20th crossing', lat:37.8088, lng:-122.2688, note:'Most-mentioned conflict point — buses, turning cars, and the weekend Uptown crowd.', count:34 },
+      { n:2, title:'Broadway corridor',  lat:37.8040, lng:-122.2715, note:'Wide one-way; room for a two-way protected lane without losing all the parking.', count:28 },
+      { n:3, title:'14th St underpass',lat:37.8030, lng:-122.2770, note:'Dark, narrow, floods after rain. Most riders avoid it entirely today.', count:19 },
+      { n:4, title:'West Grand crossing',   lat:37.8108, lng:-122.2820, note:'Would connect West Oakland to downtown — currently a gap in the network.', count:22 },
+      { n:5, title:'Frank Ogawa Plaza edge', lat:37.8049, lng:-122.2712, note:'Heavy foot traffic; a lane here needs to play nicely with pedestrians.', count:14 },
+    ];
+    this.AV = { slate:'#3A4A52', teal:'#4A7A7C', brown:'#8A6A4A', mauve:'#9B6B73', dusk:'#4A6A8A', plum:'#6B5B8A' };
+    this.RESPONSES = [
+      { id:'r1', init:'MW', name:'Marcus Webb', av:'slate', time:'2 hours ago', loc:1, opinion:"It's complicated", text:"I bike Telegraph every morning. The problem at 20th isn't space \u2014 it's the right-turning buses. A protected lane that doesn't fix the bus conflict just moves the danger.", emojis:'\uD83D\uDCAC\uD83D\uDCA1', reactions:41 },
+      { id:'r2', init:'PA', name:'Priya Anand', av:'teal', time:'3 hours ago', loc:2, opinion:'Strongly yes', text:'Broadway is wide enough for a two-way protected lane and still keep one side of parking. My kids could finally ride to the library without me holding my breath the whole way.', emojis:'\u2764\uFE0F\u2795', reactions:87 },
+      { id:'r3', init:'DH', name:'Dale Hutchins', av:'brown', time:'5 hours ago', loc:1, opinion:'No with reservations', text:"Telegraph & 20th already backs up at rush hour. Take a lane out and the delivery trucks for the shops have nowhere to go \u2014 they'll just double-park in the bike lane anyway.", emojis:'\u2696\uFE0F\uD83D\uDCAC', reactions:29 },
+      { id:'r4', init:'RO', name:'Renee Okafor', av:'plum', time:'6 hours ago', loc:3, opinion:'Strongly yes', text:'The 14th Street underpass is the scariest 200 feet in this city after dark. Lighting plus a protected lane would change whether I let my daughter ride to her shift at all.', emojis:'\u2764\uFE0F\uD83D\uDE4F', reactions:112 },
+      { id:'r5', init:'TC', name:'Tom Castellano', av:'dusk', time:'8 hours ago', loc:4, opinion:'Yes with reservations', text:'Connecting West Oakland to downtown is long overdue \u2014 but only if it actually links up to the existing Bay Trail at the west end. A lane that dead-ends at a stroad helps no one.', emojis:'\uD83D\uDCA1\u2795', reactions:53 },
+    ];
+    this.NEARBY = [
+      { title:'Should Grand Avenue get a road diet?', participants:131, locs:3, lat:37.8100, lng:-122.2600 },
+      { title:'Redesigning Mosswood Park', participants:98, locs:4, lat:37.8255, lng:-122.2645 },
+    ];
+    this.DISC_THEME = {
+      teal:   { fill:'#13495F', pill:'#0B3245' },
+      orange: { fill:'#E8772E', pill:'#A8521A' },
+      iris:   { fill:'#15455F', pill:'#0E3C50' },
+      pink:   { fill:'#C0306B', pill:'#8E2150' },
+    };
+    this.CONVOS = [
+      { title:'How can we save the Riverdale rec centre?', cat:'Local services', color:'teal', loc:'Riverdale', responses:102 },
+      { title:'Is Broadview safe enough for kids walking to school?', cat:'Safety', color:'teal', loc:'Riverdale', responses:47 },
+      { title:'Where should the new community fridge go?', cat:'Mutual aid', color:'orange', loc:'Kensington Market', responses:41 },
+      { title:'Keep Kensington car-free on summer weekends?', cat:'Streets', color:'orange', loc:'Kensington Market', responses:88 },
+      { title:'A night market for Trinity-Bellwoods?', cat:'Events', color:'iris', loc:'Trinity-Bellwoods', responses:73 },
+      { title:'A new mural under the Leslieville bridge?', cat:'Arts', color:'pink', loc:'Leslieville', responses:61 },
+    ];
+    this.DISC_PINS = [
+      { name:'The Annex',        color:'teal',   convs:1, responses:64,  lat:43.668, lng:-79.407 },
+      { name:'Kensington Market',color:'orange', convs:3, responses:158, lat:43.654, lng:-79.400 },
+      { name:'Riverdale',        color:'teal',   convs:2, responses:149, lat:43.667, lng:-79.350 },
+      { name:'Riverside',        color:'iris',   convs:1, responses:33,  lat:43.659, lng:-79.345 },
+      { name:'Trinity-Bellwoods',color:'iris',   convs:2, responses:114, lat:43.647, lng:-79.413 },
+      { name:'Leslieville',      color:'pink',   convs:1, responses:213, lat:43.663, lng:-79.330 },
+    ];
+    this.TORONTO = [43.660, -79.375];
+    this.NODES = [
+      { title:'MLK Jr Way school zone', desc:'Kids cross here at 3pm with no protection — a crossing guard only covers the far corner.', loc:'MLK Jr Way & 27th', lat:37.8125, lng:-122.2725, by:'anon_rider', time:'2 hours ago', id:'01234567801' },
+      { title:'Mandela Parkway trail head', desc:'This is where the network should connect to the existing Bay Trail at the west end.', loc:'Mandela Pkwy & 14th', lat:37.8112, lng:-122.2945, by:'trailwalker_22', time:'4 hours ago', id:'01234567802' },
+      { title:'San Pablo & 18th blind corner', desc:'Cars swing around this corner fast — I have nearly been hit twice this month alone.', loc:'San Pablo Ave & 18th', lat:37.8078, lng:-122.2748, by:'m_torres', time:'6 hours ago', id:'01234567803' },
+      { title:'MacArthur underpass', desc:'Floods every spring and is impassable on a bike for weeks — needs drainage before a lane.', loc:'MacArthur Blvd underpass', lat:37.8095, lng:-122.2540, by:'springfieldcyclist', time:'yesterday', id:'01234567804' },
+    ];
+    this.YOU = [37.8060, -122.2720];
+    this.TILE = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+    this.TILE_STREETS = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+    this.TILE_MUTED = 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png';
+    this.ATTR = '&copy; OpenStreetMap &copy; CARTO';
+    this.tileLayers = [];
+    this.selected = null;
+    this.responseN = 100;
+
+    this.wireChrome();
+    this.waitLeaflet(() => this.initMaps());
+  }
+
+  waitLeaflet(cb, tries = 0) {
+    if (window.L) return cb();
+    if (tries > 120) return;
+    setTimeout(() => this.waitLeaflet(cb, tries + 1), 60);
+  }
+
+  q(sel, root) { return (root || document).querySelector(sel); }
+  qa(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+
+  /* ---------- tile url for current basemap prop ---------- */
+  tileUrl() {
+    const m = (this.props && this.props.basemap) || 'Light';
+    if (m === 'Streets') return this.TILE_STREETS;
+    if (m === 'Muted') return this.TILE_MUTED;
+    return this.TILE;
+  }
+  addTiles(map) {
+    const t = L.tileLayer(this.tileUrl(), { attribution: this.ATTR, subdomains: 'abcd', maxZoom: 20 }).addTo(map);
+    this.tileLayers.push(t);
+    return t;
+  }
+
+  /* ---------- pin icons ---------- */
+  pinIcon(label, sel, color) {
+    const bg = sel ? '#13495F' : (color || '#15455F');
+    const size = sel ? 36 : 30;
+    return L.divIcon({
+      className: '',
+      iconSize: [size, size],
+      iconAnchor: [size / 2, size],
+      popupAnchor: [0, -size + 4],
+      html: `<div style="width:${size}px;height:${size}px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:${bg};border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);color:#fff;font:600 ${sel?14:12}px 'IBM Plex Mono',monospace;">${label}</span></div>`,
+    });
+  }
+  dotIcon(color, pulse) {
+    return L.divIcon({
+      className: '',
+      iconSize: [18, 18], iconAnchor: [9, 9],
+      html: `<div style="width:16px;height:16px;border-radius:50%;background:${color};border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);${pulse ? 'animation:ploc 2s infinite;' : ''}"></div>`,
+    });
+  }
+
+  /* ---------- build all maps ---------- */
+  initMaps() {
+    const baseOpts = { zoomControl: true, scrollWheelZoom: false };
+
+    // CONVERSATION
+    this.convMap = L.map('conv-map', baseOpts).setView([37.8050, -122.2715], 15);
+    this.addTiles(this.convMap);
+    this.convMarkers = {};
+    this.LOCS.forEach(loc => {
+      const m = L.marker([loc.lat, loc.lng], { icon: this.pinIcon(loc.n, false) }).addTo(this.convMap);
+      m.bindPopup(this.locPopup(loc));
+      m.on('click', () => this.selectLoc(loc.n));
+      this.convMarkers[loc.n] = m;
+    });
+    this.buildLegend();
+    this.buildComposerLocs();
+    this.renderConvResponses();
+    this.renderNearby();
+
+    // TEASER (non-interactive)
+    this.teaserMap = L.map('teaser-map', { zoomControl: false, attributionControl: false, dragging: false, scrollWheelZoom: false, doubleClickZoom: false, boxZoom: false, keyboard: false, touchZoom: false }).setView([37.8055, -122.2715], 14);
+    this.addTiles(this.teaserMap);
+    this.LOCS.forEach(loc => L.marker([loc.lat, loc.lng], { icon: this.pinIcon(loc.n, false), interactive: false }).addTo(this.teaserMap));
+
+    // EDITORIAL
+    this.edMap = L.map('ed-map', baseOpts).setView([37.8050, -122.2715], 15);
+    this.addTiles(this.edMap);
+    this.edLocs = [
+      { title: 'Telegraph & 20th crossing', lat: 37.8088, lng: -122.2688 },
+      { title: 'Broadway corridor', lat: 37.8040, lng: -122.2715 },
+    ];
+    this.edMarkers = [];
+    this.edLocs.forEach((l, i) => this.addEdMarker(l, i));
+    this.renderEdLocs();
+    this.edMap.on('click', (e) => {
+      const l = { title: 'New location', lat: e.latlng.lat, lng: e.latlng.lng };
+      this.edLocs.push(l);
+      this.addEdMarker(l, this.edLocs.length - 1);
+      this.renderEdLocs();
+    });
+
+    this.wireConversation();
+  }
+
+  locPopup(loc) {
+    return `<div style="min-width:190px;"><div style="font:600 13px 'IBM Plex Sans';">${loc.n}. ${loc.title}</div><div style="font:400 12px/1.45 'IBM Plex Sans';color:#65676B;margin-top:5px;">${loc.note}</div><div style="font:500 11px 'IBM Plex Mono';color:#15455F;margin-top:8px;">${loc.count} responses near here</div></div>`;
+  }
+
+  /* ---------- conversation legend + filtering ---------- */
+  opinionStyle(op) {
+    const m = {
+      'Strongly yes': '#E4F6F0;#00795E',
+      'Yes with reservations': '#EAF7E9;#2E7D32',
+      "It's complicated": '#F1F1F2;#5A5C60',
+      'No with reservations': '#FDEEE8;#C0461F',
+      'Strongly no': '#FBE3DC;#B23217',
+    };
+    return (m[op] || '#F1F1F2;#5A5C60').split(';');
+  }
+
+  respCardEl(r, mine) {
+    const loc = this.LOCS.find(l => l.n === r.loc);
+    const [obg, ocol] = this.opinionStyle(r.opinion);
+    const card = document.createElement('div');
+    card.className = 'resp';
+    card.setAttribute('data-loc', r.loc);
+    card.style.cssText = 'padding:20px 0;border-bottom:1px solid #ECECEC;' + (mine ? 'background:#EEF4F6;border-radius:12px;padding:18px;border:1px solid #CFE0E7;margin-bottom:4px;' : '');
+    const avBg = mine ? '#3A4A52' : (this.AV[r.av] || '#3A4A52');
+    card.innerHTML = `
+      <div style="display:flex;align-items:center;gap:11px;margin-bottom:11px;">
+        <div style="width:38px;height:38px;flex:0 0 38px;border-radius:50%;background:${avBg};color:#fff;display:flex;align-items:center;justify-content:center;font:600 14px 'IBM Plex Sans',sans-serif;">${r.init}</div>
+        <div style="flex:1;line-height:1.3;"><div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;color:#1A1A1A;">${r.name}</div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#9A9CA0;">${r.time}${mine ? ' \u00b7 pending review' : ''}</div></div>
+        <button class="softbtn" style="background:transparent;border:none;cursor:pointer;color:#9A9CA0;"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><circle cx="3" cy="8" r="1.4"/><circle cx="8" cy="8" r="1.4"/><circle cx="13" cy="8" r="1.4"/></svg></button>
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:11px;">
+        <button class="loc-chip" style="display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Sans',sans-serif;font-weight:500;font-size:13px;border-radius:6px;padding:3px 10px;background:#E3EDF1;color:#0E3C50;border:none;cursor:pointer;"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg>${loc ? loc.title : ''}</button>
+      </div>
+      <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.6;color:#1A1A1A;margin:0 0 12px;"></p>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <button class="reply-btn softbtn" style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#65676B;background:none;border:none;padding:2px;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L2.5 7.5 6 11M3 7.5h7a3.5 3.5 0 0 1 3.5 3.5v.5" stroke="currentColor" stroke-width="1.4"/></svg>Reply</button>
+        <button class="react-btn softbtn" style="display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:14px;color:#65676B;background:none;border:none;padding:2px;cursor:pointer;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13.5S2 9.8 2 6.2A2.7 2.7 0 0 1 8 4.3 2.7 2.7 0 0 1 14 6.2c0 3.6-6 7.3-6 7.3Z" stroke="currentColor" stroke-width="1.4"/></svg>React</button>
+        <span style="margin-left:auto;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex:0 0 auto;background:#F1F1F2;border-radius:100px;padding:4px 11px;"><span style="font-size:14px;white-space:nowrap;">${r.emojis || '\u2764\uFE0F'}</span><span class="react-count" style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#65676B;">${r.reactions}</span></span>
+      </div>
+      <div class="composer" style="display:none;margin-top:12px;background:#F4F4F5;border-radius:10px;padding:11px;">
+        <textarea rows="2" placeholder="Respond to ${r.name.split(' ')[0]}\u2026" style="width:100%;border:none;outline:none;resize:none;background:transparent;font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.5;"></textarea>
+        <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:6px;"><button class="reply-cancel softbtn" style="font-family:'IBM Plex Sans',sans-serif;font-weight:500;font-size:13px;background:#fff;border:1px solid #D9D9D9;border-radius:100px;padding:6px 14px;cursor:pointer;">Cancel</button><button class="softbtn" style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:13px;color:#fff;background:#0F0F0F;border:none;border-radius:100px;padding:6px 16px;cursor:pointer;">Post</button></div>
+      </div>`;
+    card.querySelector('p').textContent = r.text;
+    card.querySelector('.loc-chip').onclick = () => this.selectLoc(r.loc);
+    const composer = card.querySelector('.composer');
+    card.querySelector('.reply-btn').onclick = () => {
+      composer.style.display = composer.style.display === 'none' ? 'block' : 'none';
+      if (composer.style.display === 'block') composer.querySelector('textarea').focus();
+    };
+    card.querySelector('.reply-cancel').onclick = () => { composer.style.display = 'none'; };
+    const rb = card.querySelector('.react-btn'), rc = card.querySelector('.react-count');
+    rb.onclick = () => { rc.textContent = parseInt(rc.textContent, 10) + 1; rb.style.color = '#15455F'; };
+    return card;
+  }
+
+  renderConvResponses() {
+    const wrap = this.q('#conv-responses');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    this.RESPONSES.forEach(r => wrap.appendChild(this.respCardEl(r)));
+  }
+
+  renderNearby() {
+    const wrap = this.q('#conv-nearby');
+    if (!wrap) return;
+    const pinSvg = '<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg>';
+    wrap.innerHTML = '';
+    this.NEARBY.forEach(c => {
+      const t = this.tileFor(c.lat, c.lng, 14);
+      const card = document.createElement('div');
+      card.className = 'softbtn';
+      card.style.cssText = 'flex:1;min-width:280px;background:#13495F;border-radius:16px;padding:20px;color:#fff;cursor:pointer;';
+      card.innerHTML = `
+        <div style="display:flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;opacity:.9;margin-bottom:10px;">${pinSvg}<span>Map conversation</span></div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:20px;line-height:1.3;margin-bottom:8px;">${c.title}</div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;opacity:.9;margin-bottom:16px;">${c.participants} participants \u00b7 ${c.locs} locations</div>
+        <div style="position:relative;height:112px;border-radius:10px;overflow:hidden;background:#dfe6e8;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);">
+          <img src="${t.url}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+          <div style="position:absolute;left:${(t.fx * 100).toFixed(1)}%;top:${(t.fy * 100).toFixed(1)}%;transform:translate(-50%,-100%);"><div style="width:18px;height:18px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#15455F;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.4);"></div></div>
+        </div>`;
+      card.onclick = () => this.setScreen('conversation');
+      wrap.appendChild(card);
+    });
+  }
+
+  /* ---------- conversation · add nodes (variant) ---------- */
+  pendingIcon() {
+    return L.divIcon({
+      className: '',
+      iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -26],
+      html: `<div style="width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#fff;border:2.5px dashed #15455F;box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);color:#15455F;font:600 13px 'IBM Plex Sans',sans-serif;">+</span></div>`,
+    });
+  }
+
+  initAddMap() {
+    this.caMap = L.map('ca-map', { zoomControl: true, scrollWheelZoom: false }).setView([37.8050, -122.2715], 15);
+    this.addTiles(this.caMap);
+    this.caOfficial = {};
+    this.LOCS.forEach(loc => {
+      const m = L.marker([loc.lat, loc.lng], { icon: this.pinIcon(loc.n, false) }).addTo(this.caMap);
+      m.bindPopup(this.locPopup(loc));
+      m.on('click', () => this.caSelect(loc.n));
+      this.caOfficial[loc.n] = m;
+    });
+    this.caMine = [];
+    this.caAdding = false;
+    this.caDraft = null;
+
+    // render legend + responses
+    this.caBuildLegend();
+    const wrap = this.q('#ca-responses');
+    wrap.innerHTML = '';
+    this.RESPONSES.forEach(r => wrap.appendChild(this.respCardEl(r)));
+
+    // toolbar
+    this.q('#ca-add-toggle').onclick = () => this.caToggleAdd();
+    this.q('#ca-form-cancel').onclick = () => this.caCancelDraft();
+    this.q('#ca-form-submit').onclick = () => this.caSubmitDraft();
+    this.caMap.on('click', (e) => { if (this.caAdding) this.caPlaceDraft(e.latlng); });
+  }
+
+  caToggleAdd() {
+    this.caAdding = !this.caAdding;
+    const btn = this.q('#ca-add-toggle');
+    const cont = this.q('#ca-map');
+    if (this.caAdding) {
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Cancel';
+      btn.style.background = '#0F0F0F';
+      this.q('#ca-hint').textContent = 'Tap the map to drop your location';
+      this.q('#ca-hint').style.color = '#15455F';
+      cont.style.cursor = 'crosshair';
+    } else {
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3.5v9M3.5 8h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Add a location';
+      btn.style.background = '#15455F';
+      this.q('#ca-hint').textContent = '5 official locations · tap a pin to filter responses';
+      this.q('#ca-hint').style.color = '#65676B';
+      cont.style.cursor = '';
+      this.caCancelDraft();
+    }
+  }
+
+  caPlaceDraft(latlng) {
+    if (this.caDraft) this.caMap.removeLayer(this.caDraft.marker);
+    const marker = L.marker(latlng, { icon: this.pendingIcon(), zIndexOffset: 1000 }).addTo(this.caMap);
+    this.caDraft = { latlng, marker };
+    this.q('#ca-form-coords').textContent = latlng.lat.toFixed(4) + ', ' + latlng.lng.toFixed(4);
+    this.q('#ca-form-title').value = '';
+    this.q('#ca-form-desc').value = '';
+    this.q('#ca-form').style.display = 'block';
+    this.q('#ca-form-title').focus();
+  }
+
+  caCancelDraft() {
+    if (this.caDraft) { this.caMap.removeLayer(this.caDraft.marker); this.caDraft = null; }
+    this.q('#ca-form').style.display = 'none';
+  }
+
+  caSubmitDraft() {
+    const title = (this.q('#ca-form-title').value || '').trim();
+    const desc = (this.q('#ca-form-desc').value || '').trim();
+    if (!title) { this.q('#ca-form-title').focus(); return; }
+    if (!this.caDraft) return;
+    const node = { title, desc, latlng: this.caDraft.latlng, marker: this.caDraft.marker };
+    node.marker.bindPopup(`<div style="min-width:180px;"><div style="font:600 13px 'IBM Plex Sans';">${title}</div>${desc ? `<div style="font:400 12px/1.45 'IBM Plex Sans';color:#65676B;margin-top:5px;">${desc.replace(/</g,'&lt;')}</div>` : ''}<div style="font:500 11px 'IBM Plex Mono';color:#9A8C7E;margin-top:8px;">Pending review</div></div>`);
+    this.caMine.push(node);
+    this.caDraft = null;
+    this.q('#ca-form').style.display = 'none';
+    this.caRenderMine();
+    this.caToggleAdd();
+    if (typeof this.modToast === 'function') this.modToast('Suggestion sent — the team reviews it before it goes public');
+    // feed the moderation queue
+    if (this.NODES) {
+      this.NODES.unshift({ title, desc: desc || 'Suggested from the conversation map.', loc: title, lat: node.latlng.lat, lng: node.latlng.lng, by: 'brendan', time: 'just now', id: 'rc' + Date.now() });
+      if (this._modWired) { this.wireModeration(); }
+    }
+  }
+
+  caRenderMine() {
+    const wrap = this.q('#ca-mine');
+    this.q('#ca-mine-wrap').style.display = this.caMine.length ? 'block' : 'none';
+    this.q('#ca-mine-count').textContent = this.caMine.length;
+    wrap.innerHTML = '';
+    this.caMine.forEach(n => {
+      const row = document.createElement('div');
+      row.className = 'softbtn';
+      row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;background:#EEF4F6;border:1px solid #CFE0E7;cursor:pointer;';
+      row.innerHTML = `<span style="width:22px;height:22px;flex:0 0 22px;border-radius:50%;background:#fff;border:2px dashed #15455F;display:flex;align-items:center;justify-content:center;color:#15455F;font:600 13px 'IBM Plex Sans',sans-serif;">+</span><span style="flex:1;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#1A1A1A;"></span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#9A8C7E;">Pending</span>`;
+      row.querySelector('span:nth-child(2)').textContent = n.title;
+      row.onclick = () => { this.caMap.flyTo(n.latlng, 16, { duration: 0.5 }); n.marker.openPopup(); };
+      wrap.appendChild(row);
+    });
+  }
+
+  caSelect(n) {
+    this.caSelected = n;
+    this.LOCS.forEach(loc => this.caOfficial[loc.n].setIcon(this.pinIcon(loc.n, loc.n === n)));
+    this.qa('#ca-legend [data-ca-legend]').forEach(el => {
+      el.style.background = +el.getAttribute('data-ca-legend') === n ? '#E3EDF1' : 'transparent';
+    });
+    let shown = 0;
+    this.qa('#ca-responses .resp').forEach(r => { const m = +r.getAttribute('data-loc') === n; r.style.display = m ? '' : 'none'; if (m) shown++; });
+    const loc = this.LOCS.find(l => l.n === n);
+    this.caMap.flyTo([loc.lat, loc.lng], 16, { duration: 0.6 });
+    this.caOfficial[n].openPopup();
+  }
+
+  caBuildLegend() {
+    const wrap = this.q('#ca-legend');
+    wrap.innerHTML = '';
+    this.LOCS.forEach(loc => {
+      const row = document.createElement('div');
+      row.setAttribute('data-ca-legend', loc.n);
+      row.className = 'softbtn';
+      row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;cursor:pointer;transition:background .12s ease;';
+      row.onmouseenter = () => { if (this.caSelected !== loc.n) row.style.background = '#F7F7F7'; };
+      row.onmouseleave = () => { if (this.caSelected !== loc.n) row.style.background = 'transparent'; };
+      row.innerHTML = `<span style="width:22px;height:22px;flex:0 0 22px;border-radius:50%;background:#15455F;color:#fff;display:flex;align-items:center;justify-content:center;font:600 12px 'IBM Plex Sans',sans-serif;">${loc.n}</span><span style="flex:1;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#1A1A1A;">${loc.title}</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#9A9CA0;">${loc.count}</span>`;
+      row.onclick = () => this.caSelect(loc.n);
+      wrap.appendChild(row);
+    });
+  }
+
+  buildLegend() {
+    const wrap = this.q('#conv-legend');
+    wrap.innerHTML = '';
+    this.LOCS.forEach(loc => {
+      const row = document.createElement('div');
+      row.setAttribute('data-legend', loc.n);
+      row.className = 'softbtn';
+      row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:8px 8px;border-radius:8px;cursor:pointer;transition:background .12s ease;';
+      row.onmouseenter = () => { if (this.selected !== loc.n) row.style.background = '#F7F7F7'; };
+      row.onmouseleave = () => { if (this.selected !== loc.n) row.style.background = 'transparent'; };
+      row.innerHTML = `<span style="width:22px;height:22px;flex:0 0 22px;border-radius:50%;background:#15455F;color:#fff;display:flex;align-items:center;justify-content:center;font:600 12px 'IBM Plex Sans',sans-serif;">${loc.n}</span><span style="flex:1;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#1A1A1A;">${loc.title}</span><span style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#9A9CA0;">${loc.count}</span>`;
+      row.onclick = () => this.selectLoc(loc.n);
+      wrap.appendChild(row);
+    });
+  }
+
+  buildComposerLocs() {
+    const sel = this.q('#composer-loc');
+    sel.innerHTML = '';
+    this.LOCS.forEach(loc => {
+      const o = document.createElement('option');
+      o.value = loc.n; o.textContent = loc.title;
+      sel.appendChild(o);
+    });
+  }
+
+  selectLoc(n) {
+    this.selected = n;
+    // pins
+    this.LOCS.forEach(loc => this.convMarkers[loc.n].setIcon(this.pinIcon(loc.n, loc.n === n)));
+    // legend highlight
+    this.qa('[data-legend]').forEach(el => {
+      const on = +el.getAttribute('data-legend') === n;
+      el.style.background = on ? '#E3EDF1' : 'transparent';
+    });
+    // filter responses
+    let shown = 0;
+    this.qa('#conv-responses .resp').forEach(r => {
+      const match = +r.getAttribute('data-loc') === n;
+      r.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    const loc = this.LOCS.find(l => l.n === n);
+    const banner = this.q('#conv-filter');
+    banner.style.display = 'flex';
+    this.q('#conv-filter-text').textContent = `Showing ${shown} response${shown === 1 ? '' : 's'} near ${loc.title}`;
+    this.q('#conv-showall').style.display = 'inline';
+    // fly
+    this.convMap.flyTo([loc.lat, loc.lng], 16, { duration: 0.6 });
+    this.convMarkers[n].openPopup();
+  }
+
+  clearLoc() {
+    this.selected = null;
+    this.LOCS.forEach(loc => this.convMarkers[loc.n].setIcon(this.pinIcon(loc.n, false)));
+    this.qa('[data-legend]').forEach(el => el.style.background = 'transparent');
+    this.qa('#conv-responses .resp').forEach(r => r.style.display = '');
+    this.q('#conv-filter').style.display = 'none';
+    this.q('#conv-showall').style.display = 'none';
+    this.convMap.closePopup();
+    this.convMap.flyTo([37.8050, -122.2715], 15, { duration: 0.6 });
+  }
+
+  /* ---------- conversation interactions ---------- */
+  wireConversation() {
+    this.q('#conv-showall').onclick = () => this.clearLoc();
+    this.q('#conv-filter-clear').onclick = () => this.clearLoc();
+    this.q('#composer-post').onclick = () => this.postResponse();
+  }
+
+  postResponse() {
+    const ta = this.q('#composer-text');
+    const text = (ta.value || '').trim();
+    if (!text) { ta.focus(); return; }
+    const locN = +this.q('#composer-loc').value;
+    const card = this.respCardEl({ init: 'B', name: 'brendan', av: 'slate', time: 'Just now', loc: locN, opinion: '', text, emojis: '❤️', reactions: 0 }, true);
+    const list = this.q('#conv-responses');
+    list.insertBefore(card, list.firstChild);
+    ta.value = '';
+    this.selectLoc(locN);
+  }
+
+  /* ---------- discover ---------- */
+  buildDiscList() {
+    const wrap = this.q('#disc-list');
+    wrap.innerHTML = '';
+    this.discCards = {};
+    this.CONVOS.forEach((c, i) => {
+      const th = this.DISC_THEME[c.color];
+      const card = document.createElement('div');
+      card.setAttribute('data-disc', i);
+      card.setAttribute('data-loc', c.loc);
+      card.className = 'softbtn';
+      card.style.cssText = 'cursor:pointer;';
+      card.innerHTML = `
+        <div style="position:relative;height:158px;border-radius:14px;background:${th.fill};overflow:hidden;transition:box-shadow .12s ease;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="position:absolute;top:14px;right:14px;color:rgba(255,255,255,.6);"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><circle cx="8.5" cy="9.5" r="1.6" fill="currentColor"/><path d="M5 18l4.5-5 3.5 3.5L16 13l3 5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span style="position:absolute;left:16px;bottom:16px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:#fff;background:${th.pill};border-radius:100px;padding:5px 13px;">${c.cat}</span>
+        </div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:24px;line-height:1.18;letter-spacing:-0.01em;margin:14px 0 10px;">${c.title}</div>
+        <div style="display:flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:15px;color:#9A9CA0;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="color:#B0B2B5;flex:0 0 14px;"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg>
+          <span>${c.loc}</span><span>·</span><span>${c.responses} responses</span>
+        </div>`;
+      const block = card.querySelector('div');
+      card.onmouseenter = () => block.style.boxShadow = '0 6px 18px rgba(0,0,0,.16)';
+      card.onmouseleave = () => block.style.boxShadow = 'none';
+      card.onclick = () => this.setScreen('conversation');
+      wrap.appendChild(card);
+      (this.discCards[c.loc] = this.discCards[c.loc] || []).push(card);
+    });
+  }
+
+  neighbourhoodIcon(p) {
+    const th = this.DISC_THEME[p.color];
+    return L.divIcon({
+      className: '',
+      iconSize: [36, 44], iconAnchor: [18, 44],
+      html: `<div style="display:flex;align-items:flex-start;white-space:nowrap;">
+        <div style="position:relative;flex:0 0 auto;">
+          <div style="width:36px;height:36px;border-radius:9px;background:${th.fill};border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;color:#fff;font:600 16px 'IBM Plex Sans',sans-serif;">${p.convs}</div>
+          <div style="position:absolute;left:50%;bottom:-7px;transform:translateX(-50%);width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:8px solid ${th.fill};"></div>
+        </div>
+        <div style="margin-left:8px;margin-top:-1px;background:#fff;border-radius:9px;box-shadow:0 3px 12px rgba(0,0,0,.2);padding:7px 13px;">
+          <div style="font:700 15px 'IBM Plex Sans',sans-serif;color:#0F0F0F;line-height:1.1;">${p.name}</div>
+          <div style="font:400 13px 'IBM Plex Mono',monospace;color:#65676B;margin-top:3px;">${p.convs} conversation${p.convs > 1 ? 's' : ''} · ${p.responses} responses</div>
+        </div>
+      </div>`,
+    });
+  }
+
+  focusNeighbourhood(name) {
+    const p = this.DISC_PINS.find(x => x.name === name);
+    if (p) this.discMap.flyTo([p.lat, p.lng], 14, { duration: 0.6 });
+    Object.values(this.discCards || {}).flat().forEach(c => {
+      c.querySelector('div').style.outline = 'none';
+    });
+    (this.discCards[name] || []).forEach(c => {
+      const block = c.querySelector('div');
+      block.style.outline = '3px solid #0F0F0F';
+      block.style.outlineOffset = '2px';
+    });
+  }
+
+  /* ---------- editorial ---------- */
+  addEdMarker(loc, i) {
+    const m = L.marker([loc.lat, loc.lng], { icon: this.pinIcon(i + 1, false), draggable: true }).addTo(this.edMap);
+    m.on('dragend', () => { const ll = m.getLatLng(); this.edLocs[i].lat = ll.lat; this.edLocs[i].lng = ll.lng; });
+    this.edMarkers.push(m);
+  }
+  renderEdLocs() {
+    this.q('#ed-loc-count').textContent = this.edLocs.length;
+    const wrap = this.q('#ed-loc-list');
+    wrap.innerHTML = '';
+    this.edLocs.forEach((l, i) => {
+      const row = document.createElement('div');
+      row.style.cssText = 'display:flex;align-items:center;gap:10px;background:#F7F7F7;border-radius:8px;padding:8px 10px;';
+      row.innerHTML = `<span style="width:22px;height:22px;flex:0 0 22px;border-radius:50%;background:#15455F;color:#fff;display:flex;align-items:center;justify-content:center;font:600 11px 'IBM Plex Mono';">${i + 1}</span>`;
+      const inp = document.createElement('input');
+      inp.type = 'text'; inp.value = l.title;
+      inp.style.cssText = "flex:1;border:none;background:transparent;outline:none;font-family:'IBM Plex Sans';font-size:13px;font-weight:500;color:#1A1A1A;";
+      inp.oninput = () => { l.title = inp.value; };
+      const del = document.createElement('button');
+      del.className = 'softbtn';
+      del.style.cssText = 'background:transparent;border:none;cursor:pointer;color:#9A9CA0;display:flex;';
+      del.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.4"/></svg>';
+      del.onclick = () => {
+        this.edMap.removeLayer(this.edMarkers[i]);
+        this.edLocs.splice(i, 1); this.edMarkers.splice(i, 1);
+        this.edMarkers.forEach((mk, j) => mk.setIcon(this.pinIcon(j + 1, false)));
+        this.renderEdLocs();
+      };
+      row.appendChild(inp); row.appendChild(del);
+      wrap.appendChild(row);
+    });
+  }
+
+  updateCreate() {
+    const ready = (this.q('#ns-prompt').value || '').trim().length > 0 && !!this.selectedFormat;
+    const btn = this.q('#ed-publish');
+    if (ready) { btn.dataset.ready = '1'; btn.style.background = '#0F0F0F'; btn.style.color = '#fff'; btn.style.cursor = 'pointer'; }
+    else { btn.dataset.ready = ''; btn.style.background = '#ECECEC'; btn.style.color = '#9A9CA0'; btn.style.cursor = 'not-allowed'; }
+  }
+
+  selectFormat(fmt) {
+    this.selectedFormat = fmt;
+    this.qa('.ns-fmt').forEach(c => {
+      const on = c.getAttribute('data-fmt') === fmt;
+      const t = c.querySelector('.ns-thumb');
+      t.style.borderColor = on ? '#0F0F0F' : '#EFE2D8';
+      t.style.borderWidth = on ? '2px' : '1.5px';
+      t.style.boxShadow = on ? '0 0 0 3px rgba(15,15,15,.10)' : 'none';
+    });
+    const isMap = fmt === 'map';
+    this.q('#ns-framing').style.display = isMap ? 'block' : 'none';
+    this.q('#ns-map-widget').style.display = isMap ? 'block' : 'none';
+    this.q('#ns-participation').style.display = isMap ? 'block' : 'none';
+    if (isMap) requestAnimationFrame(() => { if (this.edMap) { this.edMap.invalidateSize(); this.edMap.setView([37.8050, -122.2715], 15); } });
+    this.updateCreate();
+  }
+
+  wireEditorial() {
+    // format picker
+    this.qa('.ns-fmt').forEach(c => c.onclick = () => this.selectFormat(c.getAttribute('data-fmt')));
+    // prompt + counter
+    const prompt = this.q('#ns-prompt');
+    prompt.oninput = () => { this.q('#ns-count').textContent = prompt.value.length + '/85 characters'; this.updateCreate(); };
+
+    // map search
+    const PLACES = [
+      { name: 'Downtown Oakland', lat: 37.8044, lng: -122.2712, z: 15 },
+      { name: 'Telegraph Avenue', lat: 37.8088, lng: -122.2688, z: 16 },
+      { name: 'Broadway', lat: 37.8040, lng: -122.2715, z: 16 },
+      { name: 'Frank Ogawa Plaza', lat: 37.8049, lng: -122.2712, z: 17 },
+      { name: '14th Street underpass', lat: 37.8030, lng: -122.2770, z: 17 },
+      { name: 'West Oakland', lat: 37.8120, lng: -122.2940, z: 15 },
+      { name: 'Old Oakland', lat: 37.8015, lng: -122.2740, z: 16 },
+      { name: 'Mosswood Park', lat: 37.8255, lng: -122.2645, z: 16 },
+    ];
+    const inp = this.q('#ed-search'), dd = this.q('#ed-search-results');
+    const go = (p) => { inp.value = p.name; dd.style.display = 'none'; if (this.edMap) this.edMap.flyTo([p.lat, p.lng], p.z, { duration: 0.7 }); };
+    const render = (items) => {
+      if (!items.length) { dd.style.display = 'none'; return; }
+      dd.innerHTML = '';
+      items.forEach(p => {
+        const r = document.createElement('div');
+        r.style.cssText = "display:flex;align-items:center;gap:9px;padding:10px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#0F0F0F;cursor:pointer;";
+        r.innerHTML = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="color:#15455F;flex:0 0 14px;"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg><span></span>`;
+        r.querySelector('span').textContent = p.name;
+        r.onmouseenter = () => r.style.background = '#F4F1FF';
+        r.onmouseleave = () => r.style.background = '#fff';
+        r.onmousedown = (e) => { e.preventDefault(); go(p); };
+        dd.appendChild(r);
+      });
+      dd.style.display = 'block';
+    };
+    inp.oninput = () => { const v = inp.value.trim().toLowerCase(); if (!v) { dd.style.display = 'none'; return; } render(PLACES.filter(p => p.name.toLowerCase().includes(v)).slice(0, 6)); };
+    inp.onfocus = () => { if (inp.value.trim()) inp.oninput(); };
+    inp.onkeydown = (e) => { if (e.key === 'Enter') { const m = PLACES.filter(p => p.name.toLowerCase().includes(inp.value.trim().toLowerCase())); if (m[0]) go(m[0]); } };
+    inp.onblur = () => setTimeout(() => { dd.style.display = 'none'; }, 160);
+
+    // participation mode
+    const setMode = (mode) => {
+      const part = this.q('#ed-mode-participatory'), ro = this.q('#ed-mode-readonly');
+      const on = (el, active) => {
+        el.style.borderColor = active ? '#0F0F0F' : '#ECECEC';
+        el.querySelector('.ed-radio').style.border = active ? '5px solid #0F0F0F' : '1.5px solid #D9D9D9';
+      };
+      on(part, mode === 'participatory'); on(ro, mode === 'readonly');
+      this.q('#ed-approval-row').style.opacity = mode === 'participatory' ? '1' : '.4';
+    };
+    this.q('#ed-mode-participatory').onclick = () => setMode('participatory');
+    this.q('#ed-mode-readonly').onclick = () => setMode('readonly');
+
+    // approval toggle
+    let approval = true;
+    this.q('#ed-toggle').onclick = () => {
+      approval = !approval;
+      this.q('#ed-toggle').style.background = approval ? '#0F0F0F' : '#D9D9D9';
+      this.q('#ed-toggle-knob').style.left = approval ? '21px' : '3px';
+    };
+
+    // cancel + jump to moderation queue
+    this.q('#ns-cancel').onclick = () => this.setScreen('article');
+    const goMod = this.q('#ed-go-mod');
+    if (goMod) goMod.onclick = () => this.setScreen('moderation');
+
+    // create space
+    this.q('#ed-publish').onclick = () => {
+      const btn = this.q('#ed-publish');
+      if (btn.dataset.ready !== '1') return;
+      btn.textContent = 'Created ✓  Opening space…';
+      btn.style.background = '#00AF87'; btn.style.color = '#fff';
+      setTimeout(() => { btn.textContent = 'Create space'; this.updateCreate(); this.setScreen('conversation'); }, 850);
+    };
+
+    this.updateCreate();
+  }
+
+  /* ---------- moderation dashboard ---------- */
+  tileFor(lat, lng, z) {
+    const n = Math.pow(2, z);
+    const xf = (lng + 180) / 360 * n;
+    const latR = lat * Math.PI / 180;
+    const yf = (1 - Math.log(Math.tan(latR) + 1 / Math.cos(latR)) / Math.PI) / 2 * n;
+    return { url: `https://a.basemaps.cartocdn.com/light_all/${z}/${Math.floor(xf)}/${Math.floor(yf)}@2x.png`, fx: xf - Math.floor(xf), fy: yf - Math.floor(yf) };
+  }
+
+  nodeCard(n) {
+    const card = document.createElement('div');
+    card.className = 'mod-node';
+    card.style.cssText = 'display:flex;gap:14px;align-items:center;background:#fff;border:1px solid #ECECEC;border-radius:12px;padding:13px 15px;box-shadow:0 1px 2px rgba(0,0,0,.04);transition:opacity .25s ease,transform .25s ease;';
+    const t = this.tileFor(n.lat, n.lng, 15);
+    const left = Math.round(32 - t.fx * 256), top = Math.round(32 - t.fy * 256);
+    card.innerHTML = `
+      <div style="width:64px;height:64px;flex:0 0 64px;border-radius:10px;background:#E7EDEF;position:relative;overflow:hidden;border:1px solid #E1E5E8;">
+        <img src="${t.url}" alt="" style="position:absolute;width:256px;height:256px;left:${left}px;top:${top}px;" onerror="this.style.display='none'">
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);"><div style="width:16px;height:16px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#15455F;border:2px solid #fff;box-shadow:0 1px 2px rgba(0,0,0,.3);"></div></div>
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:5px;">
+          <span style="display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#0E3C50;background:#E3EDF1;border-radius:100px;padding:2px 9px;"><svg width="11" height="11" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="4.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5l3 3" stroke="currentColor" stroke-width="1.6"/></svg>Awaiting decision</span>
+          <span style="display:inline-flex;align-items:center;gap:5px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#65676B;background:#F1F1F2;border-radius:100px;padding:2px 9px;">Map node</span>
+        </div>
+        <div style="font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:15px;line-height:1.2;margin-bottom:2px;"></div>
+        <div class="mod-desc" style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#65676B;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+        <div style="display:flex;align-items:center;gap:6px;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9A9CA0;">
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" style="color:#9A9CA0;"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.4 4.5 8.5 4.5 8.5s4.5-5.1 4.5-8.5A4.5 4.5 0 0 0 8 1.5Z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6" r="1.6" fill="currentColor"/></svg>
+          <span class="mod-loc"></span><span>·</span><span class="mod-by"></span><span>·</span><span>${n.time}</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex:0 0 auto;">
+        <button class="mod-approve" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#fff;background:#0F0F0F;border:none;border-radius:8px;padding:9px 16px;cursor:pointer;">Approve</button>
+        <button class="mod-reject" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#65676B;background:#fff;border:1px solid #D9D9D9;border-radius:8px;padding:9px 16px;cursor:pointer;">Reject</button>
+      </div>`;
+    card.querySelector('div[style*="font-weight:600"]').textContent = n.title;
+    card.querySelector('.mod-desc').textContent = '"' + n.desc + '"';
+    card.querySelector('.mod-loc').textContent = n.loc;
+    card.querySelector('.mod-by').textContent = n.by;
+    card.querySelector('.mod-approve').onclick = () => this.decideNode(card, 'approve', n);
+    card.querySelector('.mod-reject').onclick = () => this.decideNode(card, 'reject', n);
+    return card;
+  }
+
+  decideNode(card, kind, n) {
+    card.style.opacity = '0';
+    card.style.transform = 'translateX(14px)';
+    const aw = this.q('#mod-c-await'); aw.textContent = Math.max(0, parseInt(aw.textContent, 10) - 1);
+    const tgt = this.q(kind === 'approve' ? '#mod-c-mapp' : '#mod-c-mrej');
+    tgt.textContent = parseInt(tgt.textContent, 10) + 1;
+    this.modToast(kind === 'approve' ? `“${n.title}” approved — now live on the map` : `“${n.title}” rejected`);
+    setTimeout(() => { card.remove(); if (!this.qa('#mod-list .mod-node').length) this.q('#mod-empty').style.display = 'flex'; }, 270);
+  }
+
+  modToast(msg) {
+    const t = this.q('#mod-toast');
+    t.textContent = msg;
+    t.style.opacity = '1'; t.style.transform = 'translateX(-50%) translateY(0)';
+    clearTimeout(this._toastT);
+    this._toastT = setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(8px)'; }, 2300);
+  }
+
+  wireModeration() {
+    const list = this.q('#mod-list');
+    list.innerHTML = '';
+    this.NODES.forEach(n => list.appendChild(this.nodeCard(n)));
+    const aw = this.q('#mod-c-await');
+    if (aw) aw.textContent = this.NODES.length;
+    this.q('#mod-empty').style.display = this.NODES.length ? 'none' : 'flex';
+  }
+
+  /* ---------- screen chrome ---------- */
+  wireChrome() {
+    this.qa('[data-screen-btn]').forEach(b => {
+      b.onclick = () => this.setScreen(b.getAttribute('data-screen-btn'));
+    });
+    this.q('#teaser-join').onclick = () => this.setScreen('conversation');
+    this.qa('[data-open-conv]').forEach(b => b.onclick = () => this.setScreen('conversation'));
+    this._edWired = false;
+    this.setScreen('article');
+  }
+
+  setScreen(name) {
+    this.qa('.screen').forEach(s => s.style.display = s.getAttribute('data-screen') === name ? 'block' : 'none');
+    this.qa('[data-screen-btn]').forEach(b => {
+      const on = b.getAttribute('data-screen-btn') === name;
+      b.style.background = on ? '#2A2A2A' : 'transparent';
+      b.style.color = on ? '#fff' : '#B8B8C0';
+    });
+    if (name === 'editorial' && !this._edWired) { this.wireEditorial(); this._edWired = true; }
+    if (name === 'moderation' && !this._modWired) { this.wireModeration(); this._modWired = true; }
+    if (name === 'conversation-add' && !this._caWired) { if (window.L) { this.initAddMap(); this._caWired = true; } }
+    // invalidate map sizes after layout
+    requestAnimationFrame(() => {
+      const map = { conversation: this.convMap, discover: this.discMap, editorial: this.edMap, 'conversation-add': this.caMap }[name];
+      if (map) map.invalidateSize();
+      if (name === 'article' && this.teaserMap) this.teaserMap.invalidateSize();
+    });
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- tweaks (props) ---------- */
+  componentDidUpdate() {
+    if (!window.L || !this.convMap) return;
+    // swap basemap
+    const url = this.tileUrl();
+    if (url !== this._lastTile) {
+      this._lastTile = url;
+      const maps = [this.convMap, this.teaserMap, this.discMap, this.edMap, this.caMap].filter(Boolean);
+      this.tileLayers.forEach(t => { try { t.remove(); } catch (e) {} });
+      this.tileLayers = [];
+      maps.forEach(m => this.addTiles(m));
+    }
+    // harness visibility
+    const h = this.q('#harness');
+    if (h) h.style.display = (this.props && this.props.showHarness === false) ? 'none' : 'flex';
+  }
+}
+</script>
+</body>
+</html>

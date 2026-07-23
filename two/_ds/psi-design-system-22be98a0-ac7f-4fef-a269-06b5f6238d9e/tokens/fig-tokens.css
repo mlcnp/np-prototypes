@@ -1,0 +1,893 @@
+/* Generated from Figma Variables. First mode = :root default.
+   FLOAT tokens are unitless — multiply by 1px in calc() where a length is needed. */
+
+:root {
+  --account-account: "Account"; /* @kind other */
+  --account-faqs: "FAQs"; /* @kind other */
+  --account-log-in: "Log in"; /* @kind other */
+  --account-log-out: "Log out"; /* @kind other */
+  --account-notification-settings: "Notification settings"; /* @kind other */
+  --account-profile: "Profile"; /* @kind other */
+  --avatars-hoh-1: rgb(255,255,255); /* @kind color */
+  --banner-deleted-by-you: "You deleted this response."; /* @kind other */
+  --banner-end: "No more responses"; /* @kind other */
+  --banner-response-success-message: "Your response is posted."; /* @kind other */
+  --banner-start: "Start the conversation"; /* @kind other */
+  --border-width: 1; /* @kind spacing */
+  --button-10-answers: "10 answers"; /* @kind other */
+  --button-3-stories: "3 stories"; /* @kind other */
+  --button-answer: "Answer"; /* @kind other */
+  --button-approve: "Approve"; /* @kind other */
+  --button-approved: "Approved"; /* @kind other */
+  --button-ask-a-question: "Ask a question"; /* @kind other */
+  --button-ask-us-anything: "Ask us anything"; /* @kind other */
+  --button-audio: "Audio"; /* @kind other */
+  --button-cancel: "Cancel"; /* @kind other */
+  --button-close: "Close"; /* @kind other */
+  --button-comment: "Comment"; /* @kind other */
+  --button-community-guidelines: "Community Guidelines"; /* @kind other */
+  --button-continue: "Continue"; /* @kind other */
+  --button-conversation: "Conversation"; /* @kind other */
+  --button-delete: "Delete"; /* @kind other */
+  --button-drag: "Drag"; /* @kind other */
+  --button-edit: "Edit"; /* @kind other */
+  --button-emoji: "Emoji"; /* @kind other */
+  --button-follow: "Follow"; /* @kind other */
+  --button-following: "Following"; /* @kind other */
+  --button-go-back-to-conversation: "Go back to conversation"; /* @kind other */
+  --button-help-history: "Help history"; /* @kind other */
+  --button-image: "Image"; /* @kind other */
+  --button-join-the-conversation: "Join the conversation"; /* @kind other */
+  --button-join: "Join"; /* @kind other */
+  --button-next: "Next"; /* @kind other */
+  --button-no-answers: "No answers yet"; /* @kind other */
+  --button-no-responses: "No responses yet"; /* @kind other */
+  --button-participants: "284 participants"; /* @kind other */
+  --button-pin: "Pin"; /* @kind other */
+  --button-pinned: "Pinned"; /* @kind other */
+  --button-post: "Post"; /* @kind other */
+  --button-previous: "Previous"; /* @kind other */
+  --button-read-article: "Read article"; /* @kind other */
+  --button-read-more: "Read more"; /* @kind other */
+  --button-read-the-room: "Read the room"; /* @kind other */
+  --button-reject: "Reject"; /* @kind other */
+  --button-rejected: "Rejected"; /* @kind other */
+  --button-replay: "Replay"; /* @kind other */
+  --button-replies: "3 replies"; /* @kind other */
+  --button-reply-2: "Reply"; /* @kind other */
+  --button-reply: "Reply"; /* @kind other */
+  --button-report: "Report"; /* @kind other */
+  --button-respond: "Respond"; /* @kind other */
+  --button-responses: "102 responses"; /* @kind other */
+  --button-save: "Save"; /* @kind other */
+  --button-saved: "Saved"; /* @kind other */
+  --button-see-all: "See all"; /* @kind other */
+  --button-send-to-moderator: "Send to a moderator for review"; /* @kind other */
+  --button-share-your-thoughts: "Share your thoughts"; /* @kind other */
+  --button-share: "Share"; /* @kind other */
+  --button-show-less: "Show less"; /* @kind other */
+  --button-show-more-responses: "Show more responses"; /* @kind other */
+  --button-show-more: "Show more"; /* @kind other */
+  --button-stories: "20 stories"; /* @kind other */
+  --button-suggestions: "Suggestions"; /* @kind other */
+  --button-topic-of-the-moment: "Topic of the moment"; /* @kind other */
+  --button-undo: "Undo"; /* @kind other */
+  --button-update-your-response: "Update your response"; /* @kind other */
+  --button-update: "Update"; /* @kind other */
+  --button-upvote: "Upvote (22)"; /* @kind other */
+  --button-users: "20 users"; /* @kind other */
+  --button-video: "Video"; /* @kind other */
+  --button-view-extract: "View extract"; /* @kind other */
+  --button-view-video: "View video"; /* @kind other */
+  --button-view: "View"; /* @kind other */
+  --byline-abbreviated-time-stamp: "1d"; /* @kind other */
+  --byline-anonymous-user: "Anonymous User"; /* @kind other */
+  --byline-post-anonymous: "Anonymous response"; /* @kind other */
+  --byline-post-edited: "Edited"; /* @kind other */
+  --byline-post-public: "Public response"; /* @kind other */
+  --byline-time-stamp-instant: "Just now"; /* @kind other */
+  --byline-time-stamp-specific: "Dec 11, 2024 | 1:45pm"; /* @kind other */
+  --byline-time-stamp: "2 hours ago"; /* @kind other */
+  --byline-user-deleted: "Deleted User"; /* @kind other */
+  --colors-avatars-beetle: var(--colors-extended-beetle); /* @kind color */
+  --colors-avatars-carnation-1: var(--colors-extended-carnation-1); /* @kind color */
+  --colors-avatars-elsinore-1: var(--colors-extended-eisinore-1); /* @kind color */
+  --colors-avatars-emperor: var(--colors-extended-emperor); /* @kind color */
+  --colors-avatars-garnet-1: var(--colors-extended-garnet-1); /* @kind color */
+  --colors-avatars-garnet-2: var(--colors-extended-garnet-2); /* @kind color */
+  --colors-avatars-hoh-1: var(--colors-extended-hoh-1); /* @kind color */
+  --colors-avatars-jasper-1: var(--colors-extended-jasper-1); /* @kind color */
+  --colors-avatars-kilauea-1: var(--colors-utility-kilauea-1); /* @kind color */
+  --colors-avatars-lavender: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-avatars-pisgah-1: var(--colors-extended-pisgah-1); /* @kind color */
+  --colors-avatars-saguaro-1: var(--colors-extended-saguaro-1); /* @kind color */
+  --colors-avatars-tanzanite-1: var(--colors-extended-tanzanite-1); /* @kind color */
+  --colors-avatars-tanzanite-2: var(--colors-extended-tanzanite-2); /* @kind color */
+  --colors-avatars-timucuan-1: var(--colors-extended-timucuan-1); /* @kind color */
+  --colors-border-accent-2: var(--colors-primary-brand-iris); /* @kind color */
+  --colors-border-accent-light: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-border-accent-on-dark-bg: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-border-accent: var(--colors-primary-brand-iris); /* @kind color */
+  --colors-border-ai-helper: var(--colors-utility-hydrangea-1); /* @kind color */
+  --colors-border-data-viz-bar: var(--colors-primary-brand-white); /* @kind color */
+  --colors-border-face: var(--colors-primary-brand-white); /* @kind color */
+  --colors-border-primary-on-banner: rgba(15,15,15,0.15); /* @kind color */
+  --colors-border-primary-on-light-color-bg: var(--colors-grey-scale-grey-3); /* @kind color */
+  --colors-border-primary: var(--colors-grey-scale-grey-3); /* @kind color */
+  --colors-border-selected: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-border-slider-thumb: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-border-soft-black: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-border-warning: var(--colors-utility-kilauea-1); /* @kind color */
+  --colors-border-white: var(--colors-primary-brand-white); /* @kind color */
+  --colors-button-accent: var(--colors-primary-brand-iris); /* @kind color */
+  --colors-button-action: var(--colors-grey-scale-grey-2); /* @kind color */
+  --colors-button-disabled: var(--colors-grey-scale-grey-2); /* @kind color */
+  --colors-button-primary: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-button-secondary: var(--colors-primary-brand-white); /* @kind color */
+  --colors-button-slider-thumb: var(--colors-primary-brand-white); /* @kind color */
+  --colors-button-teaser: var(--colors-primary-brand-white); /* @kind color */
+  --colors-data-viz-category-1: var(--colors-extended-emperor); /* @kind color */
+  --colors-data-viz-category-2: var(--colors-extended-timucuan-1); /* @kind color */
+  --colors-data-viz-category-3: var(--colors-extended-garnet-1); /* @kind color */
+  --colors-data-viz-category-4: var(--colors-extended-saguaro-1); /* @kind color */
+  --colors-data-viz-category-5: var(--colors-extended-eisinore-1); /* @kind color */
+  --colors-data-viz-other: var(--colors-utility-grey-blue); /* @kind color */
+  --colors-data-viz-scale-1: var(--colors-primary-brand-iris); /* @kind color */
+  --colors-data-viz-scale-2: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-data-viz-scale-3: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-entry-point-bg-blue-tint: var(--colors-extended-gossamer); /* @kind color */
+  --colors-entry-point-bg-blue: var(--colors-extended-emperor); /* @kind color */
+  --colors-entry-point-bg-brown-tint: var(--colors-extended-garnet-2); /* @kind color */
+  --colors-entry-point-bg-brown: var(--colors-extended-beetle); /* @kind color */
+  --colors-entry-point-bg-green-tint: var(--colors-extended-hoh-2); /* @kind color */
+  --colors-entry-point-bg-green: var(--colors-extended-hoh-1); /* @kind color */
+  --colors-entry-point-bg-purple-tint: var(--colors-extended-tanzanite-2); /* @kind color */
+  --colors-entry-point-bg-purple: var(--colors-extended-tanzanite-1); /* @kind color */
+  --colors-entry-point-bg-red-tint: var(--colors-extended-carnation-2); /* @kind color */
+  --colors-entry-point-bg-red: var(--colors-extended-carnation-1); /* @kind color */
+  --colors-extended-beetle: rgb(169,88,81); /* @kind color */
+  --colors-extended-carnation-1: rgb(195,70,70); /* @kind color */
+  --colors-extended-carnation-2: rgb(235,115,105); /* @kind color */
+  --colors-extended-eisinore-1: rgb(245,100,0); /* @kind color */
+  --colors-extended-emperor: rgb(82,93,207); /* @kind color */
+  --colors-extended-garnet-1: rgb(118,58,53); /* @kind color */
+  --colors-extended-garnet-2: rgb(181,122,117); /* @kind color */
+  --colors-extended-gossamer: rgb(144,170,207); /* @kind color */
+  --colors-extended-hoh-1: rgb(5,130,135); /* @kind color */
+  --colors-extended-hoh-2: rgb(145,215,190); /* @kind color */
+  --colors-extended-jasper-1: rgb(125,100,83); /* @kind color */
+  --colors-extended-pisgah-1: rgb(85,60,215); /* @kind color */
+  --colors-extended-saguaro-1: rgb(165,115,40); /* @kind color */
+  --colors-extended-tanzanite-1: rgb(63,63,128); /* @kind color */
+  --colors-extended-tanzanite-2: rgb(127,127,192); /* @kind color */
+  --colors-extended-timucuan-1: rgb(190,115,205); /* @kind color */
+  --colors-grey-scale-grey-1: rgb(247,247,247); /* @kind color */
+  --colors-grey-scale-grey-2: rgb(233,233,233); /* @kind color */
+  --colors-grey-scale-grey-3: rgb(217,217,217); /* @kind color */
+  --colors-grey-scale-grey-4: rgb(129,129,129); /* @kind color */
+  --colors-grey-scale-grey-5: rgb(101,103,107); /* @kind color */
+  --colors-grey-scale-grey-6: rgb(43,43,43); /* @kind color */
+  --colors-grey-scale-soft-black: rgb(15,15,15); /* @kind color */
+  --colors-primary-brand-black: rgb(0,0,0); /* @kind color */
+  --colors-primary-brand-hydrangea-3-shade-1: rgb(232,239,249); /* @kind color */
+  --colors-primary-brand-iris: rgb(90,30,245); /* @kind color */
+  --colors-primary-brand-lavender: rgb(125,125,255); /* @kind color */
+  --colors-primary-brand-tanzanite-3: rgb(236,236,255); /* @kind color */
+  --colors-primary-brand-white: rgb(255,255,255); /* @kind color */
+  --colors-secondary-brand-jasper-3-shade-1: rgb(246,240,236); /* @kind color */
+  --colors-secondary-brand-jasper-3-shade-2: rgb(237,228,222); /* @kind color */
+  --colors-secondary-brand-jasper-3: rgb(254,247,242); /* @kind color */
+  --colors-surface-banner-info: var(--colors-utility-hydrangea-3); /* @kind color */
+  --colors-surface-banner-success: var(--colors-utility-hoh-3); /* @kind color */
+  --colors-surface-banner-suggestion: var(--colors-secondary-brand-jasper-3); /* @kind color */
+  --colors-surface-banner-warning: var(--colors-utility-garnet-3); /* @kind color */
+  --colors-surface-gradient: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-surface-highlight-2: var(--colors-secondary-brand-jasper-3); /* @kind color */
+  --colors-surface-highlight-shade-1: var(--colors-secondary-brand-jasper-3-shade-1); /* @kind color */
+  --colors-surface-highlight-shade-2: var(--colors-secondary-brand-jasper-3-shade-2); /* @kind color */
+  --colors-surface-highlight: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-surface-info-shade: var(--colors-primary-brand-hydrangea-3-shade-1); /* @kind color */
+  --colors-surface-popover-dark: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-surface-primary: var(--colors-primary-brand-white); /* @kind color */
+  --colors-surface-secondary: var(--colors-grey-scale-grey-1); /* @kind color */
+  --colors-surface-slider-pulse: rgba(90,30,245,0.1); /* @kind color */
+  --colors-surface-success: var(--colors-utility-hoh-3-2); /* @kind color */
+  --colors-surface-toggle-background: var(--colors-grey-scale-grey-3); /* @kind color */
+  --colors-surface-user-block: var(--colors-utility-kilauea-1); /* @kind color */
+  --colors-surface-user-unblock: var(--colors-utility-mum); /* @kind color */
+  --colors-surface-user-verified: var(--colors-utility-hydrangea-1); /* @kind color */
+  --colors-surface-user-warning: var(--colors-utility-saguaro-2); /* @kind color */
+  --colors-surface-verified: var(--colors-utility-hydrangea-1); /* @kind color */
+  --colors-tag-accent-light: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-tag-accent: var(--colors-primary-brand-iris); /* @kind color */
+  --colors-tag-default: var(--colors-grey-scale-grey-1); /* @kind color */
+  --colors-tag-highlight: var(--colors-utility-garnet-3); /* @kind color */
+  --colors-tag-success: var(--colors-utility-hoh-3); /* @kind color */
+  --colors-tag-verified: var(--colors-utility-hydrangea-1); /* @kind color */
+  --colors-tag-warning: var(--colors-utility-garnet-3); /* @kind color */
+  --colors-tag-white: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-accent: var(--colors-primary-brand-iris); /* @kind color */
+  --colors-text-disabled: var(--colors-grey-scale-grey-4); /* @kind color */
+  --colors-text-hint: var(--colors-grey-scale-grey-4); /* @kind color */
+  --colors-text-on-accent-color-bg: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-on-dark-bg: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-on-data-viz-category: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-on-entry-point-color-bg: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-on-primary-button: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-on-tag-light: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-on-teaser-button: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-on-toast-dark: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-primary-on-light-color-bg: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-primary: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-secondary-on-banner: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-text-secondary: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-text-success: var(--colors-utility-mum); /* @kind color */
+  --colors-text-warning: var(--colors-utility-kilauea-1); /* @kind color */
+  --colors-utility-garnet-3: rgb(252,235,234); /* @kind color */
+  --colors-utility-grey-blue: rgb(220,224,229); /* @kind color */
+  --colors-utility-hoh-1: rgb(5,130,135); /* @kind color */
+  --colors-utility-hoh-3-2: rgb(185,235,220); /* @kind color */
+  --colors-utility-hoh-3: rgb(185,235,220); /* @kind color */
+  --colors-utility-hydrangea-1: rgb(205,225,255); /* @kind color */
+  --colors-utility-hydrangea-3: rgb(245,249,255); /* @kind color */
+  --colors-utility-kilauea-1: rgb(245,60,25); /* @kind color */
+  --colors-utility-kilauea-2: rgb(250,115,85); /* @kind color */
+  --colors-utility-mum: rgb(0,175,135); /* @kind color */
+  --colors-utility-saguaro-2: rgb(255,200,65); /* @kind color */
+  --colors-utility-saguaro-3: rgb(255,230,180); /* @kind color */
+  --font-mono: "IBM Plex Mono";
+  --font-primary: "IBM Plex Sans";
+  --font-utility: "IBM Plex Sans";
+  --frontend-overlay-question-answer-option-1: "Yes"; /* @kind other */
+  --gray-gray-100: rgb(243,243,243); /* @kind color */
+  --gray-gray-900: rgb(19,19,19); /* @kind color */
+  --hint-text-character-counter-max: "1000 characters max."; /* @kind other */
+  --hint-text-character-counter-min: "100 characters min."; /* @kind other */
+  --hint-text-composer: "Share your thoughts..."; /* @kind other */
+  --hint-text-field: "Enter your email address..."; /* @kind other */
+  --hint-text-first-comment: "Be the first to share your thoughts"; /* @kind other */
+  --hint-text-first-question: "Be the first to ask a question"; /* @kind other */
+  --hint-text-reply: "Respond to Michael..."; /* @kind other */
+  --label-txt-primary: var(--gray-gray-900); /* @kind color */
+  --moderation-reviewing-claire: "Claire is reviewing"; /* @kind other */
+  --moderation-reviewing-you: "You are reviewing"; /* @kind other */
+  --navigation-tab-discover: "Discover"; /* @kind other */
+  --navigation-tab-thread: "Thread"; /* @kind other */
+  --navigation-tab-updates: "Updates"; /* @kind other */
+  --question-question-ai: "How does artificial intelligence impact your life?"; /* @kind other */
+  --question-question-europe: "How will Europe change with an aging population?"; /* @kind other */
+  --question-question-generic: "What do you think about XYZ?"; /* @kind other */
+  --radius-12-2: 12;
+  --radius-12: var(--radius-12-2);
+  --radius-16-2: var(--radius-16);
+  --radius-16: 16;
+  --radius-20-2: var(--radius-20);
+  --radius-20: 20;
+  --radius-32-2: var(--radius-32);
+  --radius-32: 32;
+  --radius-4-2: var(--radius-4);
+  --radius-4: 4;
+  --radius-8-2: var(--radius-8);
+  --radius-8: 8;
+  --reaction-changed-my-mind: "Changed my mind"; /* @kind other */
+  --reaction-controversial-emoji: "💬"; /* @kind other */
+  --reaction-controversial: "Controversial"; /* @kind other */
+  --reaction-disagree-emoji: "🤔"; /* @kind other */
+  --reaction-disagree: "Disagree"; /* @kind other */
+  --reaction-helpful-emoji: "➕"; /* @kind other */
+  --reaction-helpful: "Helpful"; /* @kind other */
+  --reaction-interesting-emoji: "💡"; /* @kind other */
+  --reaction-interesting: "Interesting"; /* @kind other */
+  --reaction-made-me-think: "Made me think"; /* @kind other */
+  --reaction-new-to-me-emoji: "💡"; /* @kind other */
+  --reaction-new-to-me: "New to me"; /* @kind other */
+  --reaction-nuanced-emoji: "⚖️"; /* @kind other */
+  --reaction-nuanced: "Nuanced"; /* @kind other */
+  --reaction-relatable-emoji: "❤️"; /* @kind other */
+  --reaction-relatable: "Relatable"; /* @kind other */
+  --reaction-respect-emoji: "🤝🏽"; /* @kind other */
+  --reaction-respect: "Respect"; /* @kind other */
+  --reaction-support: "Support"; /* @kind other */
+  --reaction-thank-you-emoji: "🙏"; /* @kind other */
+  --reaction-thank-you: "Thank you"; /* @kind other */
+  --reply-journalist: "Take a look at this video to answer your quesiton."; /* @kind other */
+  --reply-short-1: "Business is business, right?"; /* @kind other */
+  --reply-short-2: "That’s a good point."; /* @kind other */
+  --response-long: "Italian politics is very contradictory. On one hand we complain about depopulation and depopulation, while on the other hand we deny integration even to those who would be entitled to become citizen. There was a case where a mayor was arrested because he was accused of theft, favoritism and nepotism while he was trying with all his forces to revitalize a relatively small town in Sicily creating jobs and housing some immigrants from Africa. I do not deny that he had committed administrative irregularities, but they were irregularities that had to be corrected in order to continue the experiment. Instead, he was subjected to unusual and excessive punishment (the original sentence was more than 13 years long, now substantially reduced). Clearly the political and - partially - the judicial system was looking  for  expelling the immigrants seeking asylum and integration. Now the experiment is dead. I am talking about Mayor Domenico Lucano and the famous town of Riace."; /* @kind other */
+  --response-moderated: "COVID is fake. You suck."; /* @kind other */
+  --response-short-1: "My heart breaks for the two elderly women in this story. I could not imagine living in such dire circumstances, including the social isolation - which to me seems odd when I think of big Italian families. Where are their families?"; /* @kind other */
+  --response-short-2: "Looks like a great place for the digital nomad or retiree."; /* @kind other */
+  --response-short-3: "I am not understanding the Italian strategy of just having social workers check on the elderly. It is not addressing the critical need for cooling their bodies and homes."; /* @kind other */
+  --sidebar-responses-headline: "Responses"; /* @kind other */
+  --sort-all: "All"; /* @kind other */
+  --sort-filters: "Filters"; /* @kind other */
+  --sort-most-recent: "Most recent"; /* @kind other */
+  --sort-top: "Top"; /* @kind other */
+  --spacing-0-2: 0;
+  --spacing-0: var(--spacing-0-2);
+  --spacing-12-2: var(--spacing-12);
+  --spacing-12: 12;
+  --spacing-16-2: var(--spacing-16);
+  --spacing-16: 16;
+  --spacing-20-2: var(--spacing-20);
+  --spacing-20: 20;
+  --spacing-24-2: var(--spacing-24);
+  --spacing-24: 24;
+  --spacing-32-2: var(--spacing-32);
+  --spacing-32: 32;
+  --spacing-4-2: var(--spacing-4);
+  --spacing-40-2: var(--spacing-40);
+  --spacing-40: 40;
+  --spacing-48: 48;
+  --spacing-4: 4;
+  --spacing-8-2: var(--spacing-8);
+  --spacing-80-2: var(--spacing-80);
+  --spacing-80: 80;
+  --spacing-8: 8;
+  --tag-ai-tag-ai-moderated: "AI-moderated"; /* @kind other */
+  --tag-beta-tag-beta: "Beta"; /* @kind other */
+  --tag-beta-tag-labs: "Labs"; /* @kind other */
+  --tag-comment-slider-tag-its-complicated: "It's complicated"; /* @kind other */
+  --tag-comment-slider-tag-no-with-reservations: "No with reservations"; /* @kind other */
+  --tag-comment-slider-tag-strongly-no: "Strongly no"; /* @kind other */
+  --tag-comment-slider-tag-strongly-yes: "Strongly yes"; /* @kind other */
+  --tag-comment-slider-tag-yes-with-reservations: "Yes with reservations"; /* @kind other */
+  --tag-debate-tag-no: "No"; /* @kind other */
+  --tag-debate-tag-yes: "Yes"; /* @kind other */
+  --tag-external-mod-tag-approved: "Approved"; /* @kind other */
+  --tag-external-mod-tag-only-visible-to-you: "Only visible to you"; /* @kind other */
+  --tag-external-mod-tag-rejected-by-moderator: "Rejected by moderator"; /* @kind other */
+  --tag-external-mod-tag-under-review: "Under review"; /* @kind other */
+  --tag-internal-mod-tag-automatically-approved: "Automatically approved"; /* @kind other */
+  --tag-internal-mod-tag-awaiting-decision: "Awaiting decision"; /* @kind other */
+  --tag-internal-mod-tag-blocked: "Blocked"; /* @kind other */
+  --tag-internal-mod-tag-deleted-by-user: "Deleted by user"; /* @kind other */
+  --tag-internal-mod-tag-deleted-user: "Deleted user"; /* @kind other */
+  --tag-internal-mod-tag-heated: "Heated"; /* @kind other */
+  --tag-internal-mod-tag-live-thread: "Live thread"; /* @kind other */
+  --tag-internal-mod-tag-manually-approved: "Manually approved"; /* @kind other */
+  --tag-internal-mod-tag-manually-rejected: "Manually rejected"; /* @kind other */
+  --tag-internal-mod-tag-new-2: "New"; /* @kind other */
+  --tag-internal-mod-tag-new: "New"; /* @kind other */
+  --tag-internal-mod-tag-popular: "Popular"; /* @kind other */
+  --tag-internal-mod-tag-posted-anyway: "Posted anyway"; /* @kind other */
+  --tag-internal-mod-tag-published: "Published"; /* @kind other */
+  --tag-internal-mod-tag-singular-term: "Singular term"; /* @kind other */
+  --tag-internal-mod-tag-warned: "Warned"; /* @kind other */
+  --tag-internal-mod-tag-zdf-comment: "ZDF comment"; /* @kind other */
+  --tag-representing-perspectives-tag-gig-worker: "Gig worker"; /* @kind other */
+  --tag-representing-perspectives-tag-new-to-workforce: "New to the workforce"; /* @kind other */
+  --tag-representing-perspectives-tag-office-worker: "Office worker"; /* @kind other */
+  --tag-representing-perspectives-tag-retiree: "Retiree"; /* @kind other */
+  --tag-representing-perspectives-tag-service-worker: "Service worker"; /* @kind other */
+  --tag-representing-perspectives-tag-working-parent: "Working parent"; /* @kind other */
+  --tag-status-tag-active: "Active"; /* @kind other */
+  --tag-status-tag-closed: "Closed"; /* @kind other */
+  --tag-status-tag-live: "Live"; /* @kind other */
+  --tag-status-tag-upcoming: "Upcoming"; /* @kind other */
+  --tag-temperature: "🔥 Heated"; /* @kind other */
+  --tag-title-tag-admin: "Admin"; /* @kind other */
+  --tag-title-tag-automoderator: "Automoderator"; /* @kind other */
+  --tag-title-tag-celebrity: "Celebrity"; /* @kind other */
+  --tag-title-tag-journalist: "Journalist"; /* @kind other */
+  --topic-topic-ai: "Artificial intelligence and its impact on our lives"; /* @kind other */
+  --topic-topic-bigfoot: "Ask us anything: The Bigfoot mystery"; /* @kind other */
+}
+
+:root[data-theme="dark"], .dark {
+  --colors-avatars-beetle: var(--colors-extended-beetle); /* @kind color */
+  --colors-avatars-carnation-1: var(--colors-extended-carnation-1); /* @kind color */
+  --colors-avatars-elsinore-1: var(--colors-extended-eisinore-1); /* @kind color */
+  --colors-avatars-emperor: var(--colors-extended-emperor); /* @kind color */
+  --colors-avatars-garnet-1: var(--colors-extended-garnet-1); /* @kind color */
+  --colors-avatars-garnet-2: var(--colors-extended-garnet-2); /* @kind color */
+  --colors-avatars-hoh-1: var(--colors-extended-hoh-1); /* @kind color */
+  --colors-avatars-jasper-1: var(--colors-extended-jasper-1); /* @kind color */
+  --colors-avatars-kilauea-1: var(--colors-utility-kilauea-1); /* @kind color */
+  --colors-avatars-lavender: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-avatars-pisgah-1: var(--colors-extended-pisgah-1); /* @kind color */
+  --colors-avatars-saguaro-1: var(--colors-extended-saguaro-1); /* @kind color */
+  --colors-avatars-tanzanite-1: var(--colors-extended-tanzanite-1); /* @kind color */
+  --colors-avatars-tanzanite-2: var(--colors-extended-tanzanite-2); /* @kind color */
+  --colors-avatars-timucuan-1: var(--colors-extended-timucuan-1); /* @kind color */
+  --colors-border-accent-2: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-border-accent-light: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-border-accent-on-dark-bg: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-border-accent: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-border-ai-helper: var(--colors-utility-hydrangea-1); /* @kind color */
+  --colors-border-data-viz-bar: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-border-face: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-border-primary-on-banner: rgba(255,255,255,0.15); /* @kind color */
+  --colors-border-primary-on-light-color-bg: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-border-primary: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-border-selected: var(--colors-grey-scale-grey-4); /* @kind color */
+  --colors-border-slider-thumb: var(--colors-grey-scale-grey-3); /* @kind color */
+  --colors-border-soft-black: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-border-warning: var(--colors-utility-kilauea-2); /* @kind color */
+  --colors-border-white: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-button-accent: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-button-action: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-button-disabled: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-button-primary: var(--colors-primary-brand-white); /* @kind color */
+  --colors-button-secondary: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-button-slider-thumb: var(--colors-primary-brand-white); /* @kind color */
+  --colors-button-teaser: var(--colors-primary-brand-white); /* @kind color */
+  --colors-data-viz-category-1: var(--colors-extended-emperor); /* @kind color */
+  --colors-data-viz-category-2: var(--colors-extended-timucuan-1); /* @kind color */
+  --colors-data-viz-category-3: var(--colors-extended-garnet-1); /* @kind color */
+  --colors-data-viz-category-4: var(--colors-extended-saguaro-1); /* @kind color */
+  --colors-data-viz-category-5: var(--colors-extended-eisinore-1); /* @kind color */
+  --colors-data-viz-other: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-data-viz-scale-1: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-data-viz-scale-2: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-data-viz-scale-3: var(--colors-primary-brand-iris); /* @kind color */
+  --colors-entry-point-bg-blue-tint: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-entry-point-bg-blue: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-entry-point-bg-brown-tint: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-entry-point-bg-brown: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-entry-point-bg-green-tint: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-entry-point-bg-green: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-entry-point-bg-purple-tint: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-entry-point-bg-purple: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-entry-point-bg-red-tint: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-entry-point-bg-red: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-banner-info: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-banner-success: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-banner-suggestion: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-banner-warning: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-gradient: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-highlight-2: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-highlight-shade-1: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-highlight-shade-2: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-surface-highlight: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-surface-info-shade: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-surface-popover-dark: var(--colors-primary-brand-white); /* @kind color */
+  --colors-surface-primary: var(--colors-grey-scale-soft-black); /* @kind color */
+  --colors-surface-secondary: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-slider-pulse: rgba(90,30,245,0.1); /* @kind color */
+  --colors-surface-success: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-surface-toggle-background: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-surface-user-block: var(--colors-utility-kilauea-2); /* @kind color */
+  --colors-surface-user-unblock: var(--colors-utility-hoh-3); /* @kind color */
+  --colors-surface-user-verified: var(--colors-utility-hydrangea-1); /* @kind color */
+  --colors-surface-user-warning: var(--colors-utility-saguaro-3); /* @kind color */
+  --colors-surface-verified: var(--colors-grey-scale-grey-5); /* @kind color */
+  --colors-tag-accent-light: var(--colors-primary-brand-tanzanite-3); /* @kind color */
+  --colors-tag-accent: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-tag-default: var(--colors-grey-scale-grey-6); /* @kind color */
+  --colors-tag-highlight: var(--colors-utility-garnet-3); /* @kind color */
+  --colors-tag-success: var(--colors-utility-hoh-3); /* @kind color */
+  --colors-tag-verified: var(--colors-utility-hydrangea-1); /* @kind color */
+  --colors-tag-warning: var(--colors-utility-garnet-3); /* @kind color */
+  --colors-tag-white: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-accent: var(--colors-primary-brand-lavender); /* @kind color */
+  --colors-text-disabled: var(--colors-grey-scale-grey-4); /* @kind color */
+  --colors-text-hint: var(--colors-grey-scale-grey-4); /* @kind color */
+  --colors-text-on-accent-color-bg: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-on-dark-bg: var(--colors-grey-scale-grey-1); /* @kind color */
+  --colors-text-on-data-viz-category: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-on-entry-point-color-bg: var(--colors-primary-brand-white); /* @kind color */
+  --colors-text-on-primary-button: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-on-tag-light: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-on-teaser-button: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-on-toast-dark: var(--colors-primary-brand-black); /* @kind color */
+  --colors-text-primary-on-light-color-bg: var(--colors-grey-scale-grey-1); /* @kind color */
+  --colors-text-primary: var(--colors-grey-scale-grey-1); /* @kind color */
+  --colors-text-secondary-on-banner: var(--colors-grey-scale-grey-3); /* @kind color */
+  --colors-text-secondary: var(--colors-grey-scale-grey-3); /* @kind color */
+  --colors-text-success: var(--colors-utility-hoh-3); /* @kind color */
+  --colors-text-warning: var(--colors-utility-kilauea-2); /* @kind color */
+  --font-mono: "IBM Plex Mono";
+  --font-primary: "IBM Plex Sans";
+  --font-utility: "IBM Plex Sans";
+  --label-txt-primary: var(--gray-gray-100); /* @kind color */
+  --label-txt-primary: var(--gray-gray-100); /* @kind color */
+  --radius-12: var(--radius-12-2);
+  --radius-16-2: var(--radius-16);
+  --radius-20-2: var(--radius-20);
+  --radius-32-2: var(--radius-32);
+  --radius-4-2: var(--radius-4);
+  --radius-8-2: var(--radius-8);
+  --spacing-0: var(--spacing-0-2);
+  --spacing-12-2: var(--spacing-12);
+  --spacing-16-2: var(--spacing-16);
+  --spacing-20-2: var(--spacing-20);
+  --spacing-24-2: var(--spacing-24);
+  --spacing-32-2: var(--spacing-32);
+  --spacing-4-2: var(--spacing-4);
+  --spacing-40-2: var(--spacing-40);
+  --spacing-8-2: var(--spacing-8);
+  --spacing-80-2: var(--spacing-80);
+}
+
+:root[data-mode="french"] {
+  --account-account: "Compte"; /* @kind other */
+  --account-faqs: "Questions fréquentes"; /* @kind other */
+  --account-log-in: "Se connecter"; /* @kind other */
+  --account-log-out: "Se déconnecter"; /* @kind other */
+  --account-notification-settings: "Paramètres de notification"; /* @kind other */
+  --account-profile: "Profil"; /* @kind other */
+  --avatars-hoh-1: rgb(255,255,255); /* @kind color */
+  --banner-deleted-by-you: "Vous avez supprimé cette réponse."; /* @kind other */
+  --banner-end: "Il n'y a plus de réponses"; /* @kind other */
+  --banner-response-success-message: "Votre réponse est publiée."; /* @kind other */
+  --banner-start: "Lancez la conversation"; /* @kind other */
+  --button-10-answers: "10 réponses"; /* @kind other */
+  --button-3-stories: "3 histoires"; /* @kind other */
+  --button-answer: "Réponse"; /* @kind other */
+  --button-approve: "Approuver"; /* @kind other */
+  --button-approved: "Approuvé"; /* @kind other */
+  --button-ask-a-question: "Poser une question"; /* @kind other */
+  --button-ask-us-anything: "Demandez-nous ce que vous voulez"; /* @kind other */
+  --button-audio: "Audio"; /* @kind other */
+  --button-cancel: "Annulez"; /* @kind other */
+  --button-close: "Fermez"; /* @kind other */
+  --button-comment: "Commentaire"; /* @kind other */
+  --button-community-guidelines: "Règles de la communauté"; /* @kind other */
+  --button-continue: "Continuez"; /* @kind other */
+  --button-conversation: "Conversation"; /* @kind other */
+  --button-delete: "Supprimez"; /* @kind other */
+  --button-drag: "Traînée"; /* @kind other */
+  --button-edit: "Éditez"; /* @kind other */
+  --button-emoji: "Emoji"; /* @kind other */
+  --button-follow: "Suivre"; /* @kind other */
+  --button-following: "Suivant"; /* @kind other */
+  --button-go-back-to-conversation: "Revenir à la conversation"; /* @kind other */
+  --button-help-history: "Historique de l'aide"; /* @kind other */
+  --button-image: "Image"; /* @kind other */
+  --button-join-the-conversation: "Participez à la conversation"; /* @kind other */
+  --button-join: "Rejoindre"; /* @kind other */
+  --button-next: "Suivant"; /* @kind other */
+  --button-no-answers: "Pas de réponse pour l'instant"; /* @kind other */
+  --button-no-responses: "Pas de réponse"; /* @kind other */
+  --button-participants: "284 participants"; /* @kind other */
+  --button-pin: "Épinglez"; /* @kind other */
+  --button-pinned: "Épinglé"; /* @kind other */
+  --button-post: "Publiez"; /* @kind other */
+  --button-previous: "Précédent"; /* @kind other */
+  --button-read-article: "Lire l'article"; /* @kind other */
+  --button-read-more: "En savoir plus"; /* @kind other */
+  --button-read-the-room: "Lire la pièce"; /* @kind other */
+  --button-reject: "Rejeter"; /* @kind other */
+  --button-rejected: "Rejeté"; /* @kind other */
+  --button-replay: "Replay"; /* @kind other */
+  --button-replies: "3 réponses"; /* @kind other */
+  --button-reply-2: "Répondre"; /* @kind other */
+  --button-reply: "Répondre"; /* @kind other */
+  --button-report: "Rapport"; /* @kind other */
+  --button-respond: "Répondre"; /* @kind other */
+  --button-responses: "102 réponses"; /* @kind other */
+  --button-save: "Sauvegarder"; /* @kind other */
+  --button-saved: "Sauvegardé"; /* @kind other */
+  --button-see-all: "Voir tous"; /* @kind other */
+  --button-send-to-moderator: "Envoyer à un modérateur pour examen"; /* @kind other */
+  --button-share-your-thoughts: "Partagez vos réflexions"; /* @kind other */
+  --button-share: "Partagez"; /* @kind other */
+  --button-show-less: "Montrer moins"; /* @kind other */
+  --button-show-more-responses: "Afficher plus de réponses"; /* @kind other */
+  --button-show-more: "Afficher plus"; /* @kind other */
+  --button-stories: "20 histoires"; /* @kind other */
+  --button-suggestions: "Suggestions"; /* @kind other */
+  --button-topic-of-the-moment: "Sujet du moment"; /* @kind other */
+  --button-undo: "Annulez"; /* @kind other */
+  --button-update-your-response: "Mise à jour de votre réponse"; /* @kind other */
+  --button-update: "Mise à jour"; /* @kind other */
+  --button-upvote: "Vote positif (22)"; /* @kind other */
+  --button-users: "20 utilisateurs"; /* @kind other */
+  --button-video: "Vidéo"; /* @kind other */
+  --button-view-extract: "Voyez l'extrait"; /* @kind other */
+  --button-view-video: "Voyez la vidéo"; /* @kind other */
+  --button-view: "Voyez"; /* @kind other */
+  --byline-abbreviated-time-stamp: "1j"; /* @kind other */
+  --byline-anonymous-user: "Utilisateur anonyme"; /* @kind other */
+  --byline-post-anonymous: "Réponse anonyme"; /* @kind other */
+  --byline-post-edited: "Édité"; /* @kind other */
+  --byline-post-public: "Réponse publique"; /* @kind other */
+  --byline-time-stamp-instant: "À l'instant"; /* @kind other */
+  --byline-time-stamp-specific: "11 déc. 2024 | 13 h 46"; /* @kind other */
+  --byline-time-stamp: "Il y a 2 heures"; /* @kind other */
+  --byline-user-deleted: "Utilisateur supprimé"; /* @kind other */
+  --hint-text-character-counter-max: "1000 caractères maximum"; /* @kind other */
+  --hint-text-character-counter-min: "100 caractères minimum"; /* @kind other */
+  --hint-text-composer: "Partagez vos réflexions…"; /* @kind other */
+  --hint-text-field: "Saisissez votre adresse électronique..."; /* @kind other */
+  --hint-text-first-comment: "Soyez le premier à partager vos réflexions"; /* @kind other */
+  --hint-text-first-question: "Soyez le premier à poser une question"; /* @kind other */
+  --hint-text-reply: "Répondre à Michael..."; /* @kind other */
+  --moderation-reviewing-claire: "Claire est en train de réviser"; /* @kind other */
+  --moderation-reviewing-you: "Vous êtes en train de réviser"; /* @kind other */
+  --navigation-tab-discover: "Découvrir"; /* @kind other */
+  --navigation-tab-thread: "Conversation"; /* @kind other */
+  --navigation-tab-updates: "Notifications"; /* @kind other */
+  --question-question-ai: "Quel est l'impact de l'intelligence artificielle sur votre vie ?"; /* @kind other */
+  --question-question-europe: "Comment l'Europe va-t-elle évoluer avec le vieillissement de la population ?"; /* @kind other */
+  --question-question-generic: "Que pensez-vous de XYZ ?"; /* @kind other */
+  --reaction-changed-my-mind: "J'ai changé d'avis"; /* @kind other */
+  --reaction-controversial-emoji: "💬"; /* @kind other */
+  --reaction-controversial: "Controversé"; /* @kind other */
+  --reaction-disagree-emoji: "🤔"; /* @kind other */
+  --reaction-disagree: "Pas d'accord"; /* @kind other */
+  --reaction-helpful-emoji: "➕"; /* @kind other */
+  --reaction-helpful: "Utile"; /* @kind other */
+  --reaction-interesting-emoji: "💡"; /* @kind other */
+  --reaction-interesting: "Intéressant"; /* @kind other */
+  --reaction-made-me-think: "Cela m'a fait réfléchir"; /* @kind other */
+  --reaction-new-to-me-emoji: "💡"; /* @kind other */
+  --reaction-new-to-me: "Nouveau pour moi"; /* @kind other */
+  --reaction-nuanced-emoji: "⚖️"; /* @kind other */
+  --reaction-nuanced: "Nuancé"; /* @kind other */
+  --reaction-relatable-emoji: "❤️"; /* @kind other */
+  --reaction-relatable: "Relatable"; /* @kind other */
+  --reaction-respect-emoji: "🤝🏽"; /* @kind other */
+  --reaction-respect: "Respect"; /* @kind other */
+  --reaction-support: "Soutien"; /* @kind other */
+  --reaction-thank-you-emoji: "🙏"; /* @kind other */
+  --reaction-thank-you: "Merci"; /* @kind other */
+  --reply-journalist: "Regardez cette vidéo pour répondre à votre question."; /* @kind other */
+  --reply-short-1: "Les affaires sont les affaires, n'est-ce pas ?"; /* @kind other */
+  --reply-short-2: "C'est un bon point."; /* @kind other */
+  --response-long: "La politique italienne est très contradictoire. D'un côté, nous nous plaignons de la dépopulation et du dépeuplement, tandis que de l'autre, nous refusons l'intégration même à ceux qui auraient le droit de devenir citoyens. Il y a eu un cas où un maire a été arrêté parce qu'il était accusé de vol, de favoritisme et de népotisme alors qu'il essayait de toutes ses forces de revitaliser une ville relativement petite de Sicile en créant des emplois et en hébergeant des immigrés d'Afrique. Je ne nie pas qu'il ait commis des irrégularités administratives, mais il s'agissait d'irrégularités qui devaient être corrigées afin de poursuivre l'expérience. Au lieu de cela, il a été soumis à une peine inhabituelle et excessive (la peine initiale était de plus de 13 ans, aujourd'hui considérablement réduite). Il est clair que le système politique et - en partie - le système judiciaire cherchaient à expulser les immigrants en quête d'asile et d'intégration. Aujourd'hui, l'expérience est morte. Je parle du maire Domenico Lucano et de la célèbre ville de Riace."; /* @kind other */
+  --response-moderated: "COVID est un faux. Vous êtes nul."; /* @kind other */
+  --response-short-1: "Mon cœur se brise pour les deux femmes âgées de cette histoire. Je ne pourrais pas imaginer vivre dans des conditions aussi difficiles, y compris l'isolement social - qui me semble étrange lorsque je pense aux grandes familles italiennes. Où sont ces familles ?"; /* @kind other */
+  --response-short-2: "Il semble que ce soit un endroit idéal pour les nomades numériques ou les retraités."; /* @kind other */
+  --response-short-3: "Je ne comprends pas la stratégie italienne qui consiste à demander aux travailleurs sociaux de contrôler les personnes âgées. Elle ne répond pas au besoin critique de refroidissement de leurs corps et de leurs maisons."; /* @kind other */
+  --sidebar-responses-headline: "Réponses"; /* @kind other */
+  --sort-all: "Tous"; /* @kind other */
+  --sort-filters: "Filtres"; /* @kind other */
+  --sort-most-recent: "Les plus récents"; /* @kind other */
+  --sort-top: "Haut de page"; /* @kind other */
+  --tag-ai-tag-ai-moderated: "Modéré par l'IA"; /* @kind other */
+  --tag-beta-tag-beta: "Bêta"; /* @kind other */
+  --tag-beta-tag-labs: "Laboratoires"; /* @kind other */
+  --tag-comment-slider-tag-its-complicated: "C'est complexe"; /* @kind other */
+  --tag-comment-slider-tag-no-with-reservations: "Plutôt non"; /* @kind other */
+  --tag-comment-slider-tag-strongly-no: "Non catégorique"; /* @kind other */
+  --tag-comment-slider-tag-strongly-yes: "Oui catégorique"; /* @kind other */
+  --tag-comment-slider-tag-yes-with-reservations: "Plutôt oui"; /* @kind other */
+  --tag-debate-tag-no: "Non"; /* @kind other */
+  --tag-debate-tag-yes: "Oui"; /* @kind other */
+  --tag-external-mod-tag-approved: "Approuvé"; /* @kind other */
+  --tag-external-mod-tag-only-visible-to-you: "Visible uniquement par vous"; /* @kind other */
+  --tag-external-mod-tag-rejected-by-moderator: "Rejeté par le modérateur"; /* @kind other */
+  --tag-external-mod-tag-under-review: "En cours d'examen"; /* @kind other */
+  --tag-internal-mod-tag-automatically-approved: "Approuvé automatiquement"; /* @kind other */
+  --tag-internal-mod-tag-awaiting-decision: "En attente de décision"; /* @kind other */
+  --tag-internal-mod-tag-blocked: "Bloqué"; /* @kind other */
+  --tag-internal-mod-tag-deleted-by-user: "Supprimé par l'utilisateur"; /* @kind other */
+  --tag-internal-mod-tag-deleted-user: "Utilisateur supprimé"; /* @kind other */
+  --tag-internal-mod-tag-heated: "Chauffé"; /* @kind other */
+  --tag-internal-mod-tag-live-thread: "Fil de discussion"; /* @kind other */
+  --tag-internal-mod-tag-manually-approved: "Approuvé manuellement"; /* @kind other */
+  --tag-internal-mod-tag-manually-rejected: "Rejeté manuellement"; /* @kind other */
+  --tag-internal-mod-tag-new-2: "Nouveau"; /* @kind other */
+  --tag-internal-mod-tag-new: "Nouveau"; /* @kind other */
+  --tag-internal-mod-tag-popular: "Populaire"; /* @kind other */
+  --tag-internal-mod-tag-posted-anyway: "Publié quand même"; /* @kind other */
+  --tag-internal-mod-tag-published: "Publié"; /* @kind other */
+  --tag-internal-mod-tag-singular-term: "Terme singulier"; /* @kind other */
+  --tag-internal-mod-tag-warned: "Averti"; /* @kind other */
+  --tag-internal-mod-tag-zdf-comment: "Commentaire de ZDF"; /* @kind other */
+  --tag-representing-perspectives-tag-gig-worker: "Travailleur indépendant"; /* @kind other */
+  --tag-representing-perspectives-tag-new-to-workforce: "Nouveau sur le marché du travail"; /* @kind other */
+  --tag-representing-perspectives-tag-office-worker: "Employé de bureau"; /* @kind other */
+  --tag-representing-perspectives-tag-retiree: "Retraité"; /* @kind other */
+  --tag-representing-perspectives-tag-service-worker: "Travailleur de services"; /* @kind other */
+  --tag-representing-perspectives-tag-working-parent: "Parent qui travaille"; /* @kind other */
+  --tag-status-tag-active: "Actif"; /* @kind other */
+  --tag-status-tag-closed: "Fermé"; /* @kind other */
+  --tag-status-tag-live: "En direct"; /* @kind other */
+  --tag-status-tag-upcoming: "À venir"; /* @kind other */
+  --tag-temperature: "🔥 Chauffé"; /* @kind other */
+  --tag-title-tag-admin: "Administrateur"; /* @kind other */
+  --tag-title-tag-automoderator: "Automodérateur"; /* @kind other */
+  --tag-title-tag-celebrity: "Célébrité"; /* @kind other */
+  --tag-title-tag-journalist: "Journaliste"; /* @kind other */
+  --topic-topic-ai: "L'intelligence artificielle et son impact sur nos vies"; /* @kind other */
+  --topic-topic-bigfoot: "Demandez-nous ce que vous voulez : Le mystère du Bigfoot"; /* @kind other */
+}
+
+:root[data-mode="german"] {
+  --account-account: "Konto"; /* @kind other */
+  --account-faqs: "Häufig gestellte Fragen"; /* @kind other */
+  --account-log-in: "Einloggen"; /* @kind other */
+  --account-log-out: "Abmelden"; /* @kind other */
+  --account-notification-settings: "Einstellungen für Benachrichtigungen"; /* @kind other */
+  --account-profile: "Profil"; /* @kind other */
+  --avatars-hoh-1: rgb(255,255,255); /* @kind color */
+  --banner-deleted-by-you: "Sie haben diese Antwort gelöscht."; /* @kind other */
+  --banner-end: "Keine weiteren Antworten"; /* @kind other */
+  --banner-response-success-message: "Ihre Antwort wird veröffentlicht."; /* @kind other */
+  --banner-start: "Beginnen Sie das Gespräch"; /* @kind other */
+  --button-10-answers: "10 Antworten"; /* @kind other */
+  --button-3-stories: "3 Geschichten"; /* @kind other */
+  --button-answer: "Antwort"; /* @kind other */
+  --button-approve: "Genehmigen Sie"; /* @kind other */
+  --button-approved: "Genehmigt"; /* @kind other */
+  --button-ask-a-question: "Eine Frage stellen"; /* @kind other */
+  --button-ask-us-anything: "Fragen Sie uns alles"; /* @kind other */
+  --button-audio: "Audio"; /* @kind other */
+  --button-cancel: "Abbrechen"; /* @kind other */
+  --button-close: "Schließen Sie"; /* @kind other */
+  --button-comment: "Kommentar"; /* @kind other */
+  --button-community-guidelines: "Leitlinien der Gemeinschaft"; /* @kind other */
+  --button-continue: "Weiter"; /* @kind other */
+  --button-conversation: "Konversation"; /* @kind other */
+  --button-delete: "Löschen"; /* @kind other */
+  --button-drag: "Ziehen"; /* @kind other */
+  --button-edit: "Bearbeiten"; /* @kind other */
+  --button-emoji: "Emoji"; /* @kind other */
+  --button-follow: "Folgen Sie"; /* @kind other */
+  --button-following: "Unter"; /* @kind other */
+  --button-go-back-to-conversation: "Zurück zum Gespräch"; /* @kind other */
+  --button-help-history: "Hilfe Geschichte"; /* @kind other */
+  --button-image: "Bild"; /* @kind other */
+  --button-join-the-conversation: "Beteiligen Sie sich am Gespräch"; /* @kind other */
+  --button-join: "Beitreten"; /* @kind other */
+  --button-next: "Weiter"; /* @kind other */
+  --button-no-answers: "Noch keine Antworten"; /* @kind other */
+  --button-no-responses: "Keine Antworten"; /* @kind other */
+  --button-participants: "284 Teilnehmer"; /* @kind other */
+  --button-pin: "Stift"; /* @kind other */
+  --button-pinned: "Angeheftet"; /* @kind other */
+  --button-post: "Posten"; /* @kind other */
+  --button-previous: "Vorherige"; /* @kind other */
+  --button-read-article: "Artikel lesen"; /* @kind other */
+  --button-read-more: "Mehr lesen"; /* @kind other */
+  --button-read-the-room: "Stimmungs-Check"; /* @kind other */
+  --button-reject: "Ablehnen"; /* @kind other */
+  --button-rejected: "Abgelehnt"; /* @kind other */
+  --button-replay: "Wiederholen Sie"; /* @kind other */
+  --button-replies: "3 Antworten"; /* @kind other */
+  --button-reply-2: "Antworten"; /* @kind other */
+  --button-reply: "Antwort"; /* @kind other */
+  --button-report: "Bericht"; /* @kind other */
+  --button-respond: "Antworten Sie"; /* @kind other */
+  --button-responses: "102 Antworten"; /* @kind other */
+  --button-save: "Gespeichert"; /* @kind other */
+  --button-saved: "Gespeichert"; /* @kind other */
+  --button-see-all: "Alle sehen"; /* @kind other */
+  --button-send-to-moderator: "Zur Überprüfung an einen Moderator senden"; /* @kind other */
+  --button-share-your-thoughts: "Teilen Sie Ihre Sichtweise"; /* @kind other */
+  --button-share: "Teilen"; /* @kind other */
+  --button-show-less: "Weniger anzeigen"; /* @kind other */
+  --button-show-more-responses: "Weitere Antworten anzeigen"; /* @kind other */
+  --button-show-more: "Mehr anzeigen"; /* @kind other */
+  --button-stories: "20 Geschichten"; /* @kind other */
+  --button-suggestions: "Vorschläge"; /* @kind other */
+  --button-topic-of-the-moment: "Thema der Stunde"; /* @kind other */
+  --button-undo: "Rückgängig machen"; /* @kind other */
+  --button-update-your-response: "Aktualisieren Sie Ihre Antwort"; /* @kind other */
+  --button-update: "Update"; /* @kind other */
+  --button-upvote: "Upvote (22)"; /* @kind other */
+  --button-users: "20 Benutzer"; /* @kind other */
+  --button-video: "Video"; /* @kind other */
+  --button-view-extract: "Auszug ansehen"; /* @kind other */
+  --button-view-video: "Video ansehen"; /* @kind other */
+  --button-view: "Siehe"; /* @kind other */
+  --byline-abbreviated-time-stamp: "1t"; /* @kind other */
+  --byline-anonymous-user: "Anonymer Benutzer"; /* @kind other */
+  --byline-post-anonymous: "Anonyme Antwort"; /* @kind other */
+  --byline-post-edited: "Bearbeitet"; /* @kind other */
+  --byline-post-public: "Öffentliche Antwort"; /* @kind other */
+  --byline-time-stamp-instant: "Grade eben"; /* @kind other */
+  --byline-time-stamp-specific: "11. Dez. 2024 | 13:45 Uhr"; /* @kind other */
+  --byline-time-stamp: "Vor 2 Stunden"; /* @kind other */
+  --byline-user-deleted: "Gelöschter Benutzer"; /* @kind other */
+  --hint-text-character-counter-max: "Maximal 1000 Zeichen"; /* @kind other */
+  --hint-text-character-counter-min: "Mindestens 100 Zeichen"; /* @kind other */
+  --hint-text-composer: "Teilen Sie Ihre Sichtweise..."; /* @kind other */
+  --hint-text-field: "Geben Sie Ihre E-Mail Adresse ein...e"; /* @kind other */
+  --hint-text-first-comment: "Seien Sie der Erste, der seine Gedanken mitteilt"; /* @kind other */
+  --hint-text-first-question: "Stellen Sie als Erster eine Frage"; /* @kind other */
+  --hint-text-reply: "Antwort an Michael..."; /* @kind other */
+  --moderation-reviewing-claire: "Claire prüft gerade"; /* @kind other */
+  --moderation-reviewing-you: "Sie bewerten gerade"; /* @kind other */
+  --navigation-tab-discover: "Entdecken Sie"; /* @kind other */
+  --navigation-tab-thread: "Thema"; /* @kind other */
+  --navigation-tab-updates: "Updates"; /* @kind other */
+  --question-question-ai: "Wie wirkt sich die künstliche Intelligenz auf Ihr Leben aus?"; /* @kind other */
+  --question-question-europe: "Wie wird sich Europa mit einer alternden Bevölkerung verändern?"; /* @kind other */
+  --question-question-generic: "Was denken Sie über XYZ?"; /* @kind other */
+  --reaction-changed-my-mind: "Habe meine Meinung geändert"; /* @kind other */
+  --reaction-controversial-emoji: "💬"; /* @kind other */
+  --reaction-controversial: "Umstrittene"; /* @kind other */
+  --reaction-disagree-emoji: "🤔"; /* @kind other */
+  --reaction-disagree: "Nicht einverstanden"; /* @kind other */
+  --reaction-helpful-emoji: "➕"; /* @kind other */
+  --reaction-helpful: "Hilfreich"; /* @kind other */
+  --reaction-interesting-emoji: "💡"; /* @kind other */
+  --reaction-interesting: "Interessant"; /* @kind other */
+  --reaction-made-me-think: "Hat mich zum Nachdenken gebracht"; /* @kind other */
+  --reaction-new-to-me-emoji: "💡"; /* @kind other */
+  --reaction-new-to-me: "Neu für mich"; /* @kind other */
+  --reaction-nuanced-emoji: "⚖️"; /* @kind other */
+  --reaction-nuanced: "Nuanciert"; /* @kind other */
+  --reaction-relatable-emoji: "❤️"; /* @kind other */
+  --reaction-relatable: "Nachvollziehbar"; /* @kind other */
+  --reaction-respect-emoji: "🤝🏽"; /* @kind other */
+  --reaction-respect: "Respekt"; /* @kind other */
+  --reaction-support: "Unterstützung"; /* @kind other */
+  --reaction-thank-you-emoji: "🙏"; /* @kind other */
+  --reaction-thank-you: "Danke"; /* @kind other */
+  --reply-journalist: "Schauen Sie sich dieses Video an, um Ihre Frage zu beantworten."; /* @kind other */
+  --reply-short-1: "Geschäft ist Geschäft, richtig?"; /* @kind other */
+  --reply-short-2: "Das ist ein gutes Argument."; /* @kind other */
+  --response-long: "Die italienische Politik ist sehr widersprüchlich. Einerseits beklagen wir uns über Entvölkerung und Abwanderung, andererseits verweigern wir die Integration selbst denjenigen, die das Recht hätten, Bürger zu werden. Es gab einen Fall, in dem ein Bürgermeister verhaftet wurde, weil er des Diebstahls, der Vetternwirtschaft und des Nepotismus beschuldigt wurde, während er mit all seinen Kräften versuchte, eine relativ kleine Stadt in Sizilien wiederzubeleben, indem er Arbeitsplätze schuf und einige Einwanderer aus Afrika unterbrachte. Ich bestreite nicht, dass er administrative Unregelmäßigkeiten begangen hat, aber es waren Unregelmäßigkeiten, die korrigiert werden mussten, um das Experiment fortsetzen zu können. Stattdessen wurde er einer ungewöhnlichen und übermäßigen Strafe unterworfen (die ursprüngliche Strafe betrug mehr als 13 Jahre, die jetzt erheblich reduziert wurde). Es ist klar, dass die Politik und - teilweise - die Justiz darauf aus waren, die Einwanderer, die Asyl und Integration suchten, auszuweisen. Jetzt ist das Experiment gescheitert. Ich spreche von Bürgermeister Domenico Lucano und der berühmten Stadt Riace."; /* @kind other */
+  --response-moderated: "COVID ist eine Fälschung. Du bist scheiße."; /* @kind other */
+  --response-short-1: "Die beiden älteren Frauen in dieser Geschichte tun mir sehr leid. Ich könnte mir nicht vorstellen, unter solch schlimmen Umständen zu leben, einschließlich der sozialen Isolation - was mir seltsam erscheint, wenn ich an große italienische Familien denke. Wo sind ihre Familien?"; /* @kind other */
+  --response-short-2: "Sieht aus wie ein großartiger Ort für den digitalen Nomaden oder Rentner."; /* @kind other */
+  --response-short-3: "Ich verstehe die italienische Strategie nicht, die darin besteht, dass Sozialarbeiter nur nach den älteren Menschen sehen. Sie geht nicht auf die kritische Notwendigkeit ein, ihre Körper und Häuser zu kühlen."; /* @kind other */
+  --sidebar-responses-headline: "Antworten"; /* @kind other */
+  --sort-all: "Alle"; /* @kind other */
+  --sort-filters: "Filters"; /* @kind other */
+  --sort-most-recent: "Neueste"; /* @kind other */
+  --sort-top: "Top"; /* @kind other */
+  --tag-ai-tag-ai-moderated: "KI-moderiert"; /* @kind other */
+  --tag-beta-tag-beta: "Beta"; /* @kind other */
+  --tag-beta-tag-labs: "Labore"; /* @kind other */
+  --tag-comment-slider-tag-its-complicated: "Es ist kompliziert"; /* @kind other */
+  --tag-comment-slider-tag-no-with-reservations: "Nein mit Vorbehalt"; /* @kind other */
+  --tag-comment-slider-tag-strongly-no: "Eindeutig nein"; /* @kind other */
+  --tag-comment-slider-tag-strongly-yes: "Eindeutig ja"; /* @kind other */
+  --tag-comment-slider-tag-yes-with-reservations: "Ja, unter Vorbehalt"; /* @kind other */
+  --tag-debate-tag-no: "Nein"; /* @kind other */
+  --tag-debate-tag-yes: "Ja"; /* @kind other */
+  --tag-external-mod-tag-approved: "Genehmigt"; /* @kind other */
+  --tag-external-mod-tag-only-visible-to-you: "Nur für Sie sichtbar"; /* @kind other */
+  --tag-external-mod-tag-rejected-by-moderator: "Vom Moderator abgelehnt"; /* @kind other */
+  --tag-external-mod-tag-under-review: "Wird überprüft"; /* @kind other */
+  --tag-internal-mod-tag-automatically-approved: "Automatisch genehmigt"; /* @kind other */
+  --tag-internal-mod-tag-awaiting-decision: "Entscheidung steht noch aus"; /* @kind other */
+  --tag-internal-mod-tag-blocked: "Blockiert"; /* @kind other */
+  --tag-internal-mod-tag-deleted-by-user: "Gelöscht von Benutzer"; /* @kind other */
+  --tag-internal-mod-tag-deleted-user: "Gelöschter Benutzer"; /* @kind other */
+  --tag-internal-mod-tag-heated: "Beheizt"; /* @kind other */
+  --tag-internal-mod-tag-live-thread: "Live-Thread"; /* @kind other */
+  --tag-internal-mod-tag-manually-approved: "Manuell genehmigt"; /* @kind other */
+  --tag-internal-mod-tag-manually-rejected: "Manuell abgelehnt"; /* @kind other */
+  --tag-internal-mod-tag-new-2: "Neu"; /* @kind other */
+  --tag-internal-mod-tag-new: "Neu"; /* @kind other */
+  --tag-internal-mod-tag-popular: "Beliebt"; /* @kind other */
+  --tag-internal-mod-tag-posted-anyway: "Trotzdem gepostet"; /* @kind other */
+  --tag-internal-mod-tag-published: "Veröffentlicht"; /* @kind other */
+  --tag-internal-mod-tag-singular-term: "Singulärer Begriff"; /* @kind other */
+  --tag-internal-mod-tag-warned: "Gewarnt"; /* @kind other */
+  --tag-internal-mod-tag-zdf-comment: "ZDF-Kommentar"; /* @kind other */
+  --tag-representing-perspectives-tag-gig-worker: "Gig-Arbeiter"; /* @kind other */
+  --tag-representing-perspectives-tag-new-to-workforce: "Neu in der Arbeitswelt"; /* @kind other */
+  --tag-representing-perspectives-tag-office-worker: "Büroangestellter"; /* @kind other */
+  --tag-representing-perspectives-tag-retiree: "Rentner"; /* @kind other */
+  --tag-representing-perspectives-tag-service-worker: "Servicemitarbeiter"; /* @kind other */
+  --tag-representing-perspectives-tag-working-parent: "Berufstätige Eltern"; /* @kind other */
+  --tag-status-tag-active: "Aktiv"; /* @kind other */
+  --tag-status-tag-closed: "Geschlossen"; /* @kind other */
+  --tag-status-tag-live: "Live"; /* @kind other */
+  --tag-status-tag-upcoming: "Demnächst"; /* @kind other */
+  --tag-temperature: "🔥 Hitzig"; /* @kind other */
+  --tag-title-tag-admin: "Verwaltung"; /* @kind other */
+  --tag-title-tag-automoderator: "Automoderator"; /* @kind other */
+  --tag-title-tag-celebrity: "Prominente"; /* @kind other */
+  --tag-title-tag-journalist: "Journalist"; /* @kind other */
+  --topic-topic-ai: "Künstliche Intelligenz und ihre Auswirkungen auf unser Leben"; /* @kind other */
+  --topic-topic-bigfoot: "Fragen Sie uns alles: Das Bigfoot-Rätsel"; /* @kind other */
+}
+
+:root[data-mode="de"] {
+  --frontend-overlay-question-answer-option-1: "Ja"; /* @kind other */
+}
+
+:root[data-mode="fr"] {
+  --frontend-overlay-question-answer-option-1: "Oui"; /* @kind other */
+}
+
+:root[data-theme="light"], .light {
+  --label-txt-primary: var(--gray-gray-900); /* @kind color */
+}
+
+:root[data-mode="mobile"] {
+  --border-width: 1; /* @kind spacing */
+}
+
+:root[data-mode="tablet"] {
+  --border-width: 1; /* @kind spacing */
+}

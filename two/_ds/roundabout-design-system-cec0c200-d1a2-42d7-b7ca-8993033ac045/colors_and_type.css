@@ -1,0 +1,492 @@
+/* Roundabout Design System — colors_and_type.css
+ * Sourced from the @xoxo/design-tokens package (Terrazzo-generated from Figma Variables)
+ * Tokens: 181 from Figma. Primary family: Tarnac (display) + Tarnac Sans (brand/UI) + Inter (body).
+ */
+
+/* ────────────── FONT FACES ────────────── */
+@font-face {
+  font-family: "Tarnac";
+  src: url("./fonts/Tarnac-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tarnac";
+  src: url("./fonts/Tarnac-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tarnac";
+  src: url("./fonts/Tarnac-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tarnac";
+  src: url("./fonts/Tarnac-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Tarnac Sans";
+  src: url("./fonts/TarnacSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tarnac Sans";
+  src: url("./fonts/TarnacSans-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tarnac Sans";
+  src: url("./fonts/TarnacSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tarnac Sans";
+  src: url("./fonts/TarnacSans-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Inter — body copy */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ────────────── PRIMITIVE COLORS ──────────────
+   * Primary = rust/coral warm ramp (brand accent for CTAs, avatars, active tabs)
+   * Neutral = cool teal-inflected ramp (primary UI neutral — 1a292e ... fbfdfd)
+   * Grey = true neutral cool grey (borders, disabled states)
+   * Beige/Pink/Green/Yellow/Purple = category/theme ramps
+   */
+
+  --ra-white: #ffffff;
+  --ra-black: #000000;
+
+  /* Primary (rust) */
+  --ra-primary-25: #fefcfb;
+  --ra-primary-50: #fff6f2;
+  --ra-primary-100: #ffeae3;
+  --ra-primary-200: #ffd7c7;
+  --ra-primary-300: #ffc9b5;
+  --ra-primary-400: #ffbaa4;
+  --ra-primary-500: #f7a992;
+  --ra-primary-600: #ec9177;
+  --ra-primary-700: #eb6640; /* coral */
+  --ra-primary-800: #de5831;
+  --ra-primary-900: #cd4d27;
+  --ra-primary-950: #66381e; /* brand rust — action buttons */
+
+  /* Neutral (cool teal-grey) */
+  --ra-neutral-25: #fbfdfd;
+  --ra-neutral-50: #f6fafb;
+  --ra-neutral-100: #ebf2f5;
+  --ra-neutral-200: #e1ebef;
+  --ra-neutral-300: #d6e3e8;
+  --ra-neutral-400: #cbdbe1;
+  --ra-neutral-500: #bbcfd7;
+  --ra-neutral-600: #a1bcc6;
+  --ra-neutral-700: #88a4ae;
+  --ra-neutral-800: #7c98a3;
+  --ra-neutral-900: #516a74;
+  --ra-neutral-950: #1a292e; /* near-black, cool */
+
+  /* Grey (cool true-grey) */
+  --ra-grey-25: #fcfcfd;
+  --ra-grey-50: #f9f9fb;
+  --ra-grey-100: #eff0f3;
+  --ra-grey-200: #e7e8ec;
+  --ra-grey-300: #e0e1e6;
+  --ra-grey-400: #d8d9e0;
+  --ra-grey-500: #cdced7;
+  --ra-grey-600: #b9bbc6;
+  --ra-grey-700: #8b8d98;
+  --ra-grey-800: #80828d;
+  --ra-grey-900: #62636c;
+  --ra-grey-950: #1e1f24;
+
+  /* Error */
+  --ra-error-50: #fff7f7;
+  --ra-error-100: #ffebea;
+  --ra-error-200: #ffdcd9;
+  --ra-error-700: #e5484d;
+  --ra-error-800: #d73840;
+  --ra-error-900: #cc2e39;
+
+  /* Success */
+  --ra-success-100: #e5f6eb;
+  --ra-success-200: #d6f1df;
+  --ra-success-400: #adddc0;
+  --ra-success-700: #30a46c;
+  --ra-success-900: #00814c;
+
+  /* Beige (warm accent) */
+  --ra-beige-25: #fefdfb;
+  --ra-beige-50: #fef8f4;
+  --ra-beige-100: #faede3;
+  --ra-beige-200: #fae1cf;
+  --ra-beige-300: #f6d5bd;
+  --ra-beige-400: #f1c7a7;
+  --ra-beige-500: #eab58b; /* brand */
+  --ra-beige-600: #da9e6d;
+  --ra-beige-700: #b57b4b;
+  --ra-beige-800: #a3663d; /* brand accent text */
+
+  /* Pink (category) */
+  --ra-pink-25: #fff6fb;
+  --ra-pink-100: #fee9f4;
+  --ra-pink-200: #fcdced;
+  --ra-pink-300: #f7cee5;
+  --ra-pink-500: #e8acce; /* brand */
+  --ra-pink-600: #db8fba;
+  --ra-pink-700: #b96598;
+  --ra-pink-800: #9a4c7d;
+  --ra-pink-900: #7d516d; /* link color */
+  --ra-pink-950: #4a2a3e;
+
+  /* Green (category / success-muted) */
+  --ra-green-25:  #f7faf6;
+  --ra-green-50:  #eef4eb;
+  --ra-green-100: #eef2eb;
+  --ra-green-200: #e4ebe1;
+  --ra-green-500: #c3d0bd;
+  --ra-green-700: #7b8d72; /* brand */
+  --ra-green-800: #65745d;
+  --ra-green-900: #5a6b51;
+  --ra-green-950: #2f3a29;
+
+  /* Yellow (category) */
+  --ra-yellow-25: #fffbe8;
+  --ra-yellow-100: #fff1bb;
+  --ra-yellow-200: #ffe89f;
+  --ra-yellow-300: #ffdd7c;
+  --ra-yellow-400: #ffcf50;
+  --ra-yellow-500: #f2be49; /* brand */
+  --ra-yellow-600: #d9a634;
+  --ra-yellow-700: #ffc200;
+  --ra-yellow-900: #9d6e00;
+  --ra-yellow-950: #5c3f00;
+
+  /* Purple (category) */
+  --ra-purple-25: #faf6fc;
+  --ra-purple-100: #f4eef7;
+  --ra-purple-200: #ede5f2;
+  --ra-purple-500: #d3c0dd; /* brand */
+  --ra-purple-600: #bca4ca;
+  --ra-purple-700: #91779e;
+  --ra-purple-900: #745a81;
+  --ra-purple-950: #4a3754;
+
+  /* ────────────── SEMANTIC COLORS ────────────── */
+
+  /* Text */
+  --ra-text-primary:         var(--ra-neutral-950);     /* #1a292e */
+  --ra-text-secondary:       var(--ra-neutral-900);     /* #516a74 */
+  --ra-text-subtle:          var(--ra-grey-800);        /* #80828d */
+  --ra-text-placeholder:     var(--ra-neutral-700);     /* #88a4ae */
+  --ra-text-disabled:        var(--ra-grey-700);        /* #8b8d98 */
+  --ra-text-inverse-primary: var(--ra-neutral-100);     /* #ebf2f5 */
+  --ra-text-inverse-secondary: var(--ra-neutral-600);   /* #a1bcc6 */
+  --ra-text-action:          var(--ra-neutral-950);
+  --ra-text-action-active:   var(--ra-primary-950);     /* rust */
+  --ra-text-accent-primary:  var(--ra-primary-950);     /* rust */
+  --ra-text-accent-secondary: var(--ra-beige-800);      /* #a3663d */
+  --ra-text-alert:           var(--ra-error-700);
+  --ra-text-link:            var(--ra-pink-900);        /* #7d516d */
+
+  /* Surface */
+  --ra-surface-primary:      var(--ra-white);           /* modals */
+  --ra-surface-background:   var(--ra-neutral-25);      /* app shell */
+  --ra-surface-base:         var(--ra-neutral-100);     /* main tabs */
+  --ra-surface-base-weak:    var(--ra-white);
+  --ra-surface-base-muted:   var(--ra-neutral-50);
+  --ra-surface-base-strong:  var(--ra-neutral-500);     /* marketing / login */
+  --ra-surface-card:         var(--ra-grey-50);         /* post attachments */
+  --ra-surface-form:         var(--ra-neutral-50);
+  --ra-surface-highlight:    var(--ra-neutral-50);
+  --ra-surface-input:        var(--ra-white);
+  --ra-surface-input-hover:  var(--ra-neutral-50);
+  --ra-surface-message:      var(--ra-neutral-200);
+  --ra-surface-info:         var(--ra-primary-950);     /* platform voice */
+  --ra-surface-alert:        var(--ra-error-100);
+  --ra-surface-success:      var(--ra-success-400);
+  --ra-surface-action-primary:         var(--ra-neutral-950);
+  --ra-surface-action-primary-hover:   #364a51;
+  --ra-surface-action-primary-pressed: var(--ra-neutral-950);
+  --ra-surface-action-secondary:         var(--ra-white);
+  --ra-surface-action-secondary-hover:   var(--ra-neutral-100);
+  --ra-surface-action-secondary-pressed: var(--ra-neutral-300);
+  --ra-surface-action-brand:         var(--ra-primary-950);
+  --ra-surface-action-brand-hover:   #78492f;
+  --ra-surface-action-brand-pressed: var(--ra-primary-950);
+  --ra-surface-action-disabled:      var(--ra-grey-50);
+  --ra-surface-action-selected:      var(--ra-primary-200);
+  --ra-surface-overlay:      rgba(0, 0, 0, 0.10);
+
+  /* Border */
+  --ra-border-primary:         var(--ra-neutral-200);
+  --ra-border-strong:          var(--ra-neutral-400);
+  --ra-border-bold:            var(--ra-neutral-700);
+  --ra-border-highlight:       var(--ra-neutral-600);
+  --ra-border-input:           var(--ra-neutral-400);
+  --ra-border-placeholder:     var(--ra-grey-600);
+
+  /* ────────────── COMPONENT-SPECIFIC TOKENS ────────────── */
+  /* Per-surface divider colors (from VariablesExport_Component 2026-04-23) */
+  --ra-border-event:            var(--ra-beige-500);     /* Event detail page divider */
+  --ra-border-event-import:     var(--ra-yellow-500);    /* Event import drawer divider */
+  --ra-border-guide:            var(--ra-neutral-700);   /* Guide detail page divider */
+  --ra-border-new-post-button:  var(--ra-primary-600);
+  --ra-border-prompt:           var(--ra-primary-400);   /* Prompt detail page divider */
+  --ra-border-reaction-button:  transparent;             /* Reaction buttons are borderless */
+
+  /* Per-surface backgrounds */
+  --ra-surface-event-primary:          var(--ra-beige-100);    /* Event detail primary bg */
+  --ra-surface-event-secondary:        var(--ra-beige-50);     /* Event detail secondary bg */
+  --ra-surface-event-import-primary:   var(--ra-yellow-200);   /* Event import primary bg */
+  --ra-surface-event-import-secondary: var(--ra-yellow-300);   /* Event import secondary bg */
+  --ra-surface-prompt-primary:         var(--ra-primary-100);  /* Prompt detail primary bg */
+  --ra-surface-prompt-secondary:       var(--ra-primary-50);   /* Prompt detail secondary bg */
+  --ra-surface-new-post-button:        var(--ra-primary-500);
+
+  /* Reaction button states — from Variables export. Reactions use
+     the YELLOW surface scale; count digit is always rust. Icons
+     swap from outline → filled when selected. */
+  --ra-surface-reaction-button:         var(--ra-yellow-300);   /* selected fill */
+  --ra-surface-reaction-button-hover:   var(--ra-yellow-400);
+  --ra-surface-reaction-button-pressed: var(--ra-yellow-500);
+  --ra-text-reaction-count:             var(--ra-primary-950);  /* rust — always */
+  --ra-text-reaction-count-muted:       var(--ra-beige-800);    /* on plain bg, unselected */
+  --ra-text-reaction-on-highlight:      var(--ra-primary-950);  /* all text when on highlighted card bg */
+  --ra-border-action-secondary: var(--ra-neutral-500);
+  --ra-border-action-focus:    var(--ra-neutral-800);
+  --ra-border-card:            var(--ra-grey-500);
+  --ra-border-card-hover:      var(--ra-grey-700);
+  --ra-border-disabled:        var(--ra-grey-400);
+  --ra-border-alert:           var(--ra-error-700);
+}
+
+/* ────────────── COLOR THEMES ────────────── */
+/* 7 themes for colored surfaces (event cards, prompts, drawers, callouts, etc).
+   Each theme exposes 5 tokens — apply by setting a class:
+     .ra-theme-blue   (neutral)
+     .ra-theme-purple
+     .ra-theme-yellow
+     .ra-theme-pink
+     .ra-theme-green
+     .ra-theme-fuchsia
+     .ra-theme-beige  (aka "rust" — primary brand warmth)
+   Then consume: var(--ra-theme-border | -surface-bright | -surface-muted | -text-on-bright | -text-on-muted). */
+
+.ra-theme-blue {
+  --ra-theme-border:         var(--ra-neutral-700);
+  --ra-theme-surface-bright: var(--ra-neutral-900);
+  --ra-theme-surface-muted:  var(--ra-neutral-50);
+  --ra-theme-text-on-bright: var(--ra-neutral-100);
+  --ra-theme-text-on-muted:  var(--ra-neutral-900);
+}
+.ra-theme-purple {
+  --ra-theme-border:         var(--ra-purple-600);
+  --ra-theme-surface-bright: var(--ra-purple-500);    /* brand */
+  --ra-theme-surface-muted:  var(--ra-purple-25);
+  --ra-theme-text-on-bright: var(--ra-purple-950);
+  --ra-theme-text-on-muted:  var(--ra-purple-950);
+}
+.ra-theme-yellow {
+  --ra-theme-border:         var(--ra-yellow-600);
+  --ra-theme-surface-bright: var(--ra-yellow-500);    /* brand */
+  --ra-theme-surface-muted:  var(--ra-yellow-25);
+  --ra-theme-text-on-bright: var(--ra-yellow-950);
+  --ra-theme-text-on-muted:  var(--ra-yellow-950);
+}
+.ra-theme-pink {
+  --ra-theme-border:         var(--ra-pink-600);
+  --ra-theme-surface-bright: var(--ra-pink-500);      /* brand */
+  --ra-theme-surface-muted:  var(--ra-pink-25);
+  --ra-theme-text-on-bright: var(--ra-pink-950);
+  --ra-theme-text-on-muted:  var(--ra-pink-950);
+}
+.ra-theme-green {
+  --ra-theme-border:         var(--ra-green-800);
+  --ra-theme-surface-bright: var(--ra-green-900);
+  --ra-theme-surface-muted:  var(--ra-green-50);
+  --ra-theme-text-on-bright: var(--ra-green-50);
+  --ra-theme-text-on-muted:  var(--ra-green-950);
+}
+.ra-theme-fuchsia {
+  --ra-theme-border:         var(--ra-pink-800);
+  --ra-theme-surface-bright: var(--ra-pink-900);      /* brand */
+  --ra-theme-surface-muted:  var(--ra-pink-25);
+  --ra-theme-text-on-bright: var(--ra-pink-100);
+  --ra-theme-text-on-muted:  var(--ra-pink-900);
+}
+.ra-theme-beige {
+  --ra-theme-border:         var(--ra-beige-600);
+  --ra-theme-surface-bright: var(--ra-beige-500);     /* brand */
+  --ra-theme-surface-muted:  var(--ra-beige-50);
+  --ra-theme-text-on-bright: var(--ra-primary-950);   /* rust */
+  --ra-theme-text-on-muted:  var(--ra-primary-950);   /* rust */
+}
+
+:root {
+
+  /* ────────────── TYPOGRAPHY ────────────── */
+  /* Families */
+  --ra-font-display: "Tarnac", "Lora", Georgia, serif;       /* brand moments */
+  --ra-font-brand:   "Tarnac Sans", "Inter", system-ui, sans-serif;  /* UI, headings */
+  --ra-font-body:    "Inter", system-ui, -apple-system, sans-serif;   /* body copy */
+
+  /* Sizes */
+  --ra-size-10: 10px;
+  --ra-size-12: 12px;
+  --ra-size-14: 14px;
+  --ra-size-16: 16px;
+  --ra-size-20: 20px;
+  --ra-size-24: 24px;
+  --ra-size-32: 32px;
+
+  /* Weights */
+  --ra-weight-normal: 400;
+  --ra-weight-medium: 500;
+  --ra-weight-semibold: 600;
+  --ra-weight-bold: 700;
+
+  /* Line heights */
+  --ra-lh-tight: 1.25;
+  --ra-lh-medium: 1.3;
+  --ra-lh-normal: 1.5;
+
+  /* ────────────── SPACING ────────────── */
+  --ra-space-xs: 4px;
+  --ra-space-sm: 8px;
+  --ra-space-md: 12px;
+  --ra-space-lg: 16px;
+  --ra-space-xl: 20px;
+  --ra-space-xxl: 24px;
+  --ra-space-xxxl: 32px;
+  --ra-space-xxxxl: 40px;
+  --ra-space-huge: 80px;
+
+  /* ────────────── RADII ────────────── */
+  --ra-radius-none: 0;
+  --ra-radius-xs: 4px;
+  --ra-radius-sm: 8px;
+  --ra-radius-md: 12px;
+  --ra-radius-lg: 16px;
+  --ra-radius-xl: 32px;
+  --ra-radius-full: 999px;
+
+  /* ────────────── SHADOWS ────────────── */
+  /* All shadow colors use #adb8bd — a cool blue-grey — which is a key brand signature. */
+  --ra-shadow-low:
+    0.3px 0.5px 0.7px 0 rgba(173,184,189,0.33),
+    0.8px 1.7px 0.1px -2.5px rgba(173,184,189,0.33);
+  --ra-shadow-md:
+    0 2px 15px 0 rgba(0, 0, 0, 0.10);
+  --ra-shadow-medium:
+    4.1px 8.3px 10.4px -2.5px rgba(173,184,189,0.46),
+    0.3px 0.5px 0.7px 0 rgba(173,184,189,0.46);
+  --ra-shadow-high:
+    16.3px 32.5px 40.9px -2.5px rgba(173,184,189,0.57),
+    3.8px 7.5px 9.5px -1.2px rgba(173,184,189,0.57),
+    0.3px 0.5px 0.7px 0 rgba(173,184,189,0.57);
+}
+
+/* ────────────── SEMANTIC BASE STYLES ────────────── */
+html, body {
+  color: var(--ra-text-primary);
+  background: var(--ra-surface-background);
+  font-family: var(--ra-font-body);
+  font-size: var(--ra-size-16);
+  line-height: var(--ra-lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display — Tarnac serif, tight leading */
+.ra-display-lg, h1.ra-display {
+  font-family: var(--ra-font-display);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: var(--ra-lh-tight);
+  color: var(--ra-text-primary);
+}
+.ra-display-md {
+  font-family: var(--ra-font-display);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: var(--ra-lh-tight);
+}
+.ra-display-sm {
+  font-family: var(--ra-font-display);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: var(--ra-lh-tight);
+}
+
+/* Heading — Tarnac Sans bold */
+.ra-heading-lg, h1, h2 {
+  font-family: var(--ra-font-brand);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: var(--ra-lh-tight);
+  color: var(--ra-text-primary);
+}
+.ra-heading-md, h3 {
+  font-family: var(--ra-font-brand);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: var(--ra-lh-tight);
+}
+.ra-heading-sm, h4 {
+  font-family: var(--ra-font-brand);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: var(--ra-lh-tight);
+}
+
+/* Heading light — same sizes, regular weight */
+.ra-heading-light-lg { font-family: var(--ra-font-brand); font-size: 24px; font-weight: 400; line-height: var(--ra-lh-tight); }
+.ra-heading-light-md { font-family: var(--ra-font-brand); font-size: 20px; font-weight: 400; line-height: var(--ra-lh-tight); }
+.ra-heading-light-sm { font-family: var(--ra-font-brand); font-size: 16px; font-weight: 400; line-height: var(--ra-lh-tight); }
+
+/* Body */
+.ra-body-lg, p {
+  font-family: var(--ra-font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: var(--ra-lh-normal);
+  color: var(--ra-text-primary);
+}
+.ra-body-sm {
+  font-family: var(--ra-font-body);
+  font-size: 14px;
+  line-height: var(--ra-lh-normal);
+}
+.ra-body-brand-lg { font-family: var(--ra-font-brand); font-size: 16px; font-weight: 400; line-height: 1.4; }
+.ra-body-brand-sm { font-family: var(--ra-font-brand); font-size: 14px; font-weight: 400; line-height: 1.4; }
+
+/* Utility — compact UI text, Tarnac Sans */
+.ra-utility-lg     { font-family: var(--ra-font-brand); font-size: 16px; font-weight: 400; line-height: var(--ra-lh-tight); }
+.ra-utility-lg-700 { font-family: var(--ra-font-brand); font-size: 16px; font-weight: 700; line-height: var(--ra-lh-tight); }
+.ra-utility-md     { font-family: var(--ra-font-brand); font-size: 14px; font-weight: 400; line-height: var(--ra-lh-tight); }
+.ra-utility-md-700 { font-family: var(--ra-font-brand); font-size: 14px; font-weight: 700; line-height: var(--ra-lh-tight); }
+.ra-utility-sm     { font-family: var(--ra-font-brand); font-size: 12px; font-weight: 400; line-height: var(--ra-lh-tight); }
+.ra-utility-sm-700 { font-family: var(--ra-font-brand); font-size: 12px; font-weight: 700; line-height: var(--ra-lh-tight); }
+.ra-utility-tiny-700 { font-family: var(--ra-font-brand); font-size: 10px; font-weight: 700; line-height: var(--ra-lh-tight); }
+
+a { color: var(--ra-text-link); text-decoration: underline; text-underline-offset: 2px; }
+code, pre { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
