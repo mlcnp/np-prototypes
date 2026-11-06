@@ -1,2 +1,1 @@
-This is a repository of scrappy NP / PSI prototypes from design sprints
-
+This is a repository of scrappy prototypes for the Public Spaces Incubator project.
