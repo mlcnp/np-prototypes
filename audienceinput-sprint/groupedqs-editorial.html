@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Editor journey: grouped questions</title>
+<style>
+:root{--bg:#f1f1f1;--card:#fff;--ink:#1f1f1f;--mut:#777;--line:#e3e3e3;--soft:#f6f6f6;--btn:#2b2b2b;--btnink:#fff;--av:#bdbdbd;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161616;--card:#222;--ink:#ececec;--mut:#9a9a9a;--line:#333;--soft:#2a2a2a;--btn:#e8e8e8;--btnink:#1a1a1a;--av:#555;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161616;--card:#222;--ink:#ececec;--mut:#9a9a9a;--line:#333;--soft:#2a2a2a;--btn:#e8e8e8;--btnink:#1a1a1a;--av:#555;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.5 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:20px 16px 120px}
+.bar{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mut);margin-bottom:14px}
+.bar b{color:var(--ink);font-weight:600}
+.bar .sp{flex:1}
+.pill{border:1px solid var(--line);border-radius:99px;padding:2px 10px;font-size:11px;background:var(--card);color:var(--mut)}
+.pill.on{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+h1{font-size:17px;margin:0 0 4px;font-weight:650}
+.sub{color:var(--mut);margin:0 0 14px;font-size:12px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:0 0 14px}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:8px 10px;color:var(--mut);font:inherit;cursor:pointer}
+.tab.on{color:var(--ink);border-color:var(--ink);font-weight:600}
+.row{border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:10px;background:var(--card);display:flex;gap:12px;align-items:flex-start}
+.row.click{cursor:pointer}.row.click:hover{background:var(--soft)}
+.grow{flex:1;min-width:0}
+.q{font-weight:600;font-size:13px;margin:0 0 4px}
+.meta{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:11px;flex-wrap:wrap}
+.avs{display:inline-flex}.avs i{width:16px;height:16px;border-radius:50%;background:var(--av);border:2px solid var(--card);margin-left:-5px}.avs i:first-child{margin-left:0}
+.flag{background:var(--btn);color:var(--btnink);border:0;border-radius:99px;padding:3px 10px;font-size:11px;cursor:pointer;font-family:inherit}
+.flag.none{background:var(--soft);color:var(--mut);cursor:default}
+.btn{background:var(--btn);color:var(--btnink);border:0;border-radius:6px;padding:8px 14px;font:inherit;font-weight:600;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.rank{width:22px;height:22px;border-radius:50%;background:var(--soft);border:1px solid var(--line);display:grid;place-items:center;font-size:11px;font-weight:600;flex:none}
+.count{font-weight:650;color:var(--ink)}
+.bars{height:3px;background:var(--line);border-radius:3px;margin:0 0 16px;overflow:hidden}.bars div{height:100%;background:var(--btn);transition:width .3s}
+details{margin-top:8px}summary{cursor:pointer;color:var(--mut);font-size:11px}
+details ul{margin:6px 0 0;padding-left:16px;color:var(--mut);font-size:12px}
+.badge{font-size:10px;border:1px solid var(--line);border-radius:4px;padding:0 6px;color:var(--mut)}
+.badge.done{background:var(--btn);color:var(--btnink);border-color:var(--btn)}
+textarea,input.qi{width:100%;border:1px solid var(--line);border-radius:6px;padding:10px;font:inherit;background:var(--card);color:var(--ink);resize:vertical}
+input.qi{font-weight:600;font-size:14px}
+.post{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-bottom:8px;background:var(--card)}
+.post.flagged{background:var(--soft);border-style:dashed}
+.post .who{font-weight:600;font-size:12px;display:flex;gap:8px;align-items:center}
+.post .who i{width:18px;height:18px;border-radius:50%;background:var(--av)}
+.post p{margin:6px 0}
+.acts{display:flex;gap:12px}.acts button{background:none;border:0;color:var(--mut);font:inherit;font-size:11px;cursor:pointer;padding:0;text-decoration:underline}
+.dock{position:fixed;left:0;right:0;bottom:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);z-index:5}
+.dock .in{max-width:760px;margin:0 auto}
+.dock textarea{height:64px;margin-bottom:8px}
+.dock .ac{display:flex;gap:8px;align-items:center}
+.warn{background:var(--soft);border:1px solid var(--line);border-left:3px solid var(--ink);border-radius:6px;padding:10px 12px;margin-bottom:10px;font-size:12px}
+.note{font-size:11px;color:var(--mut);margin:4px 0 12px}
+.toast{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);background:var(--btn);color:var(--btnink);padding:10px 16px;border-radius:8px;z-index:9;max-width:90%;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.hint{font-size:11px;color:var(--mut);margin-top:16px;text-align:center}
+.sw{display:flex;gap:6px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 20px;margin-bottom:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-size:14px}
+.brand svg{color:var(--mut)}
+.steps{display:flex;align-items:center;gap:10px}
+.step{display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;font:inherit;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+button.step{cursor:pointer}button.step:hover .lbl{color:var(--ink)}
+.dot{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;background:var(--av);color:#fff}
+.step.cur .dot{background:var(--btn);color:var(--btnink)}.step.cur{color:var(--ink);font-weight:600}
+.step.todo .dot{background:transparent;border:1px solid var(--av);color:var(--mut)}
+.dash{color:var(--av);font-size:13px}
+.stick{position:sticky;top:calc(env(safe-area-inset-top,0px) + 8px);z-index:5;box-shadow:0 6px 16px rgba(0,0,0,.12);border-radius:10px}
+.stick textarea{height:72px;margin:10px 0 8px}
+.qwrap{position:relative}
+</style></head><body>
+<div class="wrap" id="app"></div>
+<script>
+const T="Is Canada’s economy exposed if U.S. tariffs on steel and aluminum stay in place through next year?";
+const state={view:"dash",conv:null,tab:"posts",qid:null,qs:[
+ {id:1,text:"Is Canada’s economy exposed if U.S. tariffs on steel and aluminum stay in place through next year?",n:42,vars:["Will Canada’s economy suffer if the steel tariffs last into 2027?","How exposed is our economy to U.S. metal tariffs?","What happens to Canadian GDP if tariffs stay?"],status:"open"},
+ {id:2,text:"Will tariffs really raise prices at the grocery store, or is that overstated?",n:31,vars:["Are grocery prices going up because of tariffs?","Is the tariff effect on food prices real?"],status:"open"},
+ {id:3,text:"How many Canadian jobs are actually at risk from tariffs on the auto sector?",n:19,vars:["Will auto workers lose their jobs?","How many auto jobs are at risk in Ontario?","Are plant closures coming?","What do tariffs mean for auto workers?"],status:"open"},
+ {id:4,text:"Can provinces retaliate on their own, or does Ottawa decide?",n:8,vars:["Who decides on counter-tariffs?"],status:"open"}],
+ posts:{1:[["Priya S.","Steel and aluminum exports are a big share of Ontario and Quebec manufacturing. Prolonged tariffs hit these regions hardest."],["Marcus L.","My cousin’s plant in Hamilton already cut a shift. It’s not hypothetical."],["Dana K.","Did anyone see the new hockey schedule? Totally off topic but excited."],["Jo R.","Economists say the broader effect depends on how fast supply chains reroute."]],
+  2:[["Elena V.","Produce is mostly imported in winter, so tariffs on U.S. goods show up fast."],["Tom B.","Retailers absorb some of it, at least at first."]],
+  3:[["Sam O.","Windsor and Oshawa are the most exposed communities."],["Aisha M.","Parts cross the border multiple times, so costs compound."]],
+  4:[["Chris P.","Trade policy is federal, but provinces control procurement and liquor boards."]]},
+ edited:false,noChange:false,removed:{},warned:false,draft:""};
+const convs=[{id:1,t:"What do U.S. tariffs mean for Canada?",p:312,open:4},{id:2,t:"Housing affordability in the GTA",p:204,open:0},{id:3,t:"Federal budget reaction",p:148,open:2}];
+const $=h=>{document.getElementById("app").innerHTML=h};
+const avs=n=>`<span class="avs"><i></i><i></i><i></i></span>`;
+const go=(v,x={})=>{Object.assign(state,{view:v},x);render()};
+function toast(m){const e=document.createElement("div");e.className="toast";e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.remove(),3800)}
+const crumbs=()=>{const cur={dash:1,conv:2,q:3}[state.view],steps=["Conversations","Open questions","Answer"];
+ const nav=i=>i==1?"go('dash')":"go('conv',{tab:'questions'})";
+ return `<header class="top"><div class="brand"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x=".6" y=".6" width="26.8" height="26.8" rx="3" fill="var(--soft)"/><path d="M2 2l24 24M26 2L2 26"/></svg><span>CBCspaces</span></div>
+ <nav class="steps" aria-label="Editor progress">${steps.slice(0,cur).map((s,k)=>{const n=k+1,st=n<cur?"done":n==cur?"cur":"todo";return `${k?'<span class="dash" aria-hidden="true">&gt;</span>':''}<${st=="done"?`button onclick="${nav(n)}"`:'span'} class="step ${st}"${st=="cur"?' aria-current="step"':''}><span class="lbl">${s}</span></${st=="done"?'button':'span'}>`}).join("")}</nav></header>`};
+function dash(){
+ $(crumbs("Active conversations")+`<div class="panel"><h1>Active conversations</h1><p class="sub">Editorial dashboard (backend). Conversations with unanswered reader questions show a flag.</p>
+ ${convs.map(c=>{const open=c.id==1?state.qs.filter(q=>q.status=="open").length:c.open;return `<div class="row click" data-c="${c.id}"><div class="grow"><p class="q">${c.t}</p><div class="meta">${avs()} ${c.p} posts</div></div>${open?`<button class="flag" data-f="${c.id}">${open} open questions</button>`:`<span class="flag none">No open questions</span>`}</div>`}).join("")}
+ <p class="hint">Try: click “open questions” flag to jump straight in, or open the conversation first.</p></div>`);
+ document.querySelectorAll("[data-c]").forEach(e=>e.onclick=()=>go("conv",{conv:+e.dataset.c,tab:"posts"}));
+ document.querySelectorAll("[data-f]").forEach(e=>e.onclick=ev=>{ev.stopPropagation();go("conv",{conv:+e.dataset.f,tab:"questions"})});
+}
+function conv(){
+ const c=convs.find(x=>x.id==state.conv),open=c.id==1?state.qs.filter(q=>q.status=="open").length:c.open;
+ let body;
+ if(state.tab=="posts"){body=`<div class="note">The “Open questions” tab is flagged when readers are asking things nobody has answered.</div>`+(state.posts[1].slice(0,3).map(p=>`<div class="post"><div class="who"><i></i>${p[0]}</div><p>${p[1]}</p></div>`).join(""))}
+ else if(c.id!=1){body=`<div class="row"><div class="grow meta">Demo data is only wired up for “What do U.S. tariffs mean for Canada?”.</div></div>`}
+ else{
+  const done=state.qs.filter(q=>q.status=="answered").length,sorted=[...state.qs].sort((a,b)=>b.n-a.n);
+  body=`<h1>Answer readers’ questions</h1><p class="sub">AI groups similar questions and ranks them by how many participants asked. Answer once, notify everyone.</p>
+  <div class="bars"><div style="width:${done/state.qs.length*100}%"></div></div>
+  ${sorted.map((q,i)=>`<div class="row click" data-q="${q.id}"><span class="rank">${i+1}</span><div class="grow"><p class="q">${q.text}</p><div class="meta">${avs()}<span><span class="count">${q.n}</span> participants asking</span>${q.status=="answered"?'<span class="badge done">Answered</span>':""}</div></div></div>`).join("")}
+  ${done==state.qs.length?'<div class="warn">All questions answered. Nice work.</div>':""}`}
+ $(crumbs("Conversation")+`<div class="panel"><h1>${c.t}</h1><p class="sub">${c.p} posts. Frontend view for editors. Draft box is not available on this page.</p>
+ <div class="tabs"><button class="tab ${state.tab=="posts"?"on":""}" data-t="posts">Posts</button><button class="tab ${state.tab=="questions"?"on":""}" data-t="questions">Open questions ${open?`<span class="flag" style="padding:0 7px;margin-left:4px">${open}</span>`:""}</button></div>${body}</div>
+ <div style="margin-top:12px"><button class="btn ghost" id="back">Back</button></div>`);
+ document.querySelectorAll("[data-t]").forEach(e=>e.onclick=()=>go("conv",{tab:e.dataset.t}));
+ document.querySelectorAll("[data-q]").forEach(e=>e.onclick=()=>go("q",{qid:+e.dataset.q,edited:false,noChange:false,warned:false,draft:"",removed:{}}));
+ document.getElementById("back").onclick=()=>go("dash");
+}
+function qv(){
+ const q=state.qs.find(x=>x.id==state.qid),ps=state.posts[q.id];
+ $(crumbs("Question")+`<div class="stick"><div class="panel"><label class="note" for="qt">Question</label><div class="qwrap"><input class="qi" id="qt" value="${q.text.replace(/"/g,"&quot;")}"></div>
+ STICKYBODY</div></div>
+ <div class="meta" style="margin:16px 2px 10px">${avs()}<span><span class="count">${q.n}</span> participants asking</span></div>
+ ${ps.map((p,i)=>{const r=state.removed[i];return `<div class="post ${r?"flagged":""}"><div class="who"><i></i>${p[0]}${r?'<span class="badge">Removed from question</span>':""}</div><p>${p[1]}</p><div class="acts">${r?`<button data-u="${i}">Undo</button>`:`<button data-r="${i}">Flag as unrelated / remove</button>`}</div></div>`}).join("")}`);
+ document.getElementById("app").innerHTML=document.getElementById("app").innerHTML.replace("STICKYBODY",`${state.warned?`<div class="warn"><b>You didn’t edit the question.</b> Edit it to better fit the topic, or confirm that no changes are needed.<div class="sw" style="margin-top:8px"><button class="btn ghost" id="ed">Edit question</button><button class="btn" id="nc">No changes needed</button></div></div>`:""}
+ <textarea id="ans" placeholder="Write your answer to all ${q.n} participants…">${state.draft}</textarea>
+ <div class="ac"><button class="btn ghost" id="bk">Back to questions</button><span class="sp" style="flex:1"></span><button class="btn" id="post">Post answer</button></div>`);
+ const qt=document.getElementById("qt"),ans=document.getElementById("ans");
+ qt.oninput=()=>{state.edited=qt.value!==q.text};
+ ans.oninput=()=>{state.draft=ans.value};
+ document.querySelectorAll("[data-r]").forEach(e=>e.onclick=()=>{state.removed[e.dataset.r]=1;const d=state.draft,s=qt.value;render();document.getElementById("qt").value=s;toast("Post removed from this question")});
+ document.querySelectorAll("[data-u]").forEach(e=>e.onclick=()=>{delete state.removed[e.dataset.u];const s=qt.value;render();document.getElementById("qt").value=s});
+ document.getElementById("bk").onclick=()=>go("conv",{tab:"questions"});
+ const finish=()=>{q.text=qt.value;q.status="answered";const left=ps.length-Object.keys(state.removed).length;go("conv",{tab:"questions"});toast("Answer posted. Reply notification sent to "+left+" authors whose posts were part of this question.")};
+ document.getElementById("post").onclick=()=>{if(!ans.value.trim()){toast("Write an answer first");return}
+  if(!state.edited&&!state.noChange){state.warned=true;const s=qt.value;render();document.getElementById("qt").value=s;return}finish()};
+ const ed=document.getElementById("ed");if(ed)ed.onclick=()=>{state.warned=false;const s=qt.value;render();const i=document.getElementById("qt");i.value=s;i.focus();window.scrollTo(0,0)};
+ const nc=document.getElementById("nc");if(nc)nc.onclick=()=>{state.noChange=true;finish()};
+}
+function render(){({dash,conv,q:qv})[state.view]();window.scrollTo(0,0)}
+render();
+</script></body></html>
